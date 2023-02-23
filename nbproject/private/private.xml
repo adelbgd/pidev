@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/Livraison_modifierrController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/Commande_modifierController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/services/LivraisonService.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/Livraison_ajouterController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/Livraison_acceuilController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/Commande_acceuilController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/NewFXMain.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/interfaces/LivraisonInterface.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/services/CommandeService.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/PI/src/view/Commande_ajouterController.java</file>
+            <file>file:/C:/Users/Walid/OneDrive/Documents/NetBeansProjects/projetswappy2/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/Walid/OneDrive/Documents/NetBeansProjects/projetswappy2/src/GUI/HomecategorieMain.java</file>
+            <file>file:/C:/Users/Walid/OneDrive/Documents/NetBeansProjects/projetswappy2/src/GUI/ModifierprodController.java</file>
+            <file>file:/C:/Users/Walid/OneDrive/Documents/NetBeansProjects/projetswappy2/src/GUI/FXMLController.java</file>
+            <file>file:/C:/Users/Walid/OneDrive/Documents/NetBeansProjects/projetswappy2/src/GUI/HomeController.java</file>
+            <file>file:/C:/Users/Walid/OneDrive/Documents/NetBeansProjects/projetswappy2/src/GUI/HomeMain.java</file>
         </group>
     </open-files>
 </project-private>
