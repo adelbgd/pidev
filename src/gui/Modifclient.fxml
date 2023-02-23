@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifclientController">
+   <children>
+      <Label layoutX="46.0" layoutY="120.0" text="email" />
+      <Label layoutX="48.0" layoutY="149.0" text="nom" />
+      <Label layoutX="39.0" layoutY="182.0" text="prenom" />
+      <Label layoutX="46.0" layoutY="210.0" text="pwd" />
+      <TextField fx:id="email" layoutX="101.0" layoutY="116.0" />
+      <TextField fx:id="nom" layoutX="102.0" layoutY="145.0" />
+      <TextField fx:id="prenom" layoutX="103.0" layoutY="178.0" />
+      <TextField fx:id="pwd" layoutX="104.0" layoutY="215.0" />
+      <Button fx:id="modifier" layoutX="471.0" layoutY="302.0" mnemonicParsing="false" onAction="#Modifier" text="Modifier" />
+      <Label layoutX="46.0" layoutY="99.0" text="cin" />
+      <TextField fx:id="cin" layoutX="105.0" layoutY="87.0" />
+      <Button layoutX="466.0" layoutY="260.0" mnemonicParsing="false" onAction="#Supprimer" text="supprimer" />
+   </children>
+</AnchorPane>
