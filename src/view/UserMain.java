@@ -6,6 +6,7 @@
 package view;
 
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,13 +16,13 @@ import javafx.stage.Stage;
  *
  * @author HP
  */
-public class NewFXMain extends Application {
+public class UserMain extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
        
        // Parent root = FXMLLoader.load(getClass().getResource("/view/commentaire.fxml"));
-                Parent root = FXMLLoader.load(getClass().getResource("/view/HOME.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/view/userinterface.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

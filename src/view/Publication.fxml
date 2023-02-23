@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PublicationController">
+   <children>
+      <TextField fx:id="idUtilisateurTextField" layoutX="37.0" layoutY="103.0" promptText="Entrer l'id de l'utilisateur" />
+      <TextField fx:id="nomTextField" layoutX="344.0" layoutY="103.0" promptText="Entrer le nom" />
+      <TextField fx:id="prenomTextField" layoutX="345.0" layoutY="157.0" promptText="Entrer le prenom" />
+      <Button fx:id="afficherPublicationUtilisateur" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#afficherPublicationUtilisateur" text="Rechercher les publications par ID" />
+      <Button fx:id="rechercherparNomPrenom" layoutX="287.0" layoutY="204.0" mnemonicParsing="false" onAction="#afficherPublicationUtilisateurNomPrenom" text="Rechercher les publications par nom et prénom" />
+      <AnchorPane layoutX="584.0" layoutY="-11.0" opacity="0.5" prefHeight="600.0" prefWidth="394.0" style="-fx-background-color: black;">
+         <children>
+            <Button fx:id="home" layoutX="2.0" layoutY="472.0" mnemonicParsing="false" onAction="#home" prefHeight="128.0" prefWidth="367.0" style="-fx-background-color: black;" text="HOME" textFill="WHITE" />
+            <ImageView fx:id="image" fitHeight="182.0" fitWidth="178.0" layoutX="109.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Swappywhite.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableview" layoutX="113.0" layoutY="256.0" opacity="0.0" prefHeight="200.0" prefWidth="374.0">
+        <columns>
+          <TableColumn fx:id="colID_Publication" prefWidth="75.0" text="id pub" />
+          <TableColumn fx:id="colID_User" prefWidth="75.0" text="id user" />
+            <TableColumn fx:id="colTitrePublication" prefWidth="75.0" text="titre" />
+            <TableColumn fx:id="colContenuPublication" prefWidth="75.0" text="contenu" />
+            <TableColumn fx:id="colDatePublication" prefWidth="75.0" text="date" />
+        </columns>
+      </TableView>
+      <Button fx:id="afficherToutesLesPublications" layoutX="211.0" layoutY="33.0" mnemonicParsing="false" onAction="#afficherPublications" text="afficher toutes les publications" />
+   </children>
+</AnchorPane>

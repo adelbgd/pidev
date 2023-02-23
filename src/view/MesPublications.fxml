@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MesPublicationsController">
+   <children>
+      <Button fx:id="ajout_c" layoutX="229.0" layoutY="48.0" mnemonicParsing="false" onAction="#ajout_c" prefHeight="0.0" prefWidth="141.0" text="Ajouter une publication" />
+      <Button fx:id="modifier_c" layoutX="269.0" layoutY="141.0" mnemonicParsing="false" onAction="#modifier_c" text="Modifier" />
+      <Button fx:id="supprimer_c" layoutX="264.0" layoutY="215.0" mnemonicParsing="false" onAction="#supprimer_c" text="Supprimer" />
+      <ListView fx:id="list_pub" layoutX="386.0" layoutY="16.0" prefHeight="322.0" prefWidth="200.0" />
+      <AnchorPane prefHeight="400.0" prefWidth="226.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Swappywhite.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="retour" layoutY="323.0" mnemonicParsing="false" onAction="#retour" opacity="0.5" prefHeight="80.0" prefWidth="226.0" style="-fx-background-color: black;" text="retour" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
