@@ -14,19 +14,15 @@ import models.client;
  * @author user
  */
 public interface adminInterfaces {
-    
-    
-    
-    public void ajouter (admin am);
-    public void modifier(String cin,String nom,String prenom);
 
-    /**
-     *
-     * @param am
-     */
-    public void supprimer(admin am);
-    public void getall(admin am);
-    
-   
-    
+    public void ajouter(admin am);
+
+    public void modifier(String cin, String nom, String prenom, String email, String pwd);
+
+    public void supprimer(String cin);
+
+    public List<admin> getall();
+
+    public admin getOneById(String cin);
+
 }

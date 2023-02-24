@@ -2,6 +2,25 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/pidev2/NewFXMain.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/services/clientServices.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/gui/GestionAdminController.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/gui/GestionClients.fxml</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/models/client.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/gui/GestionAdmin.fxml</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/interfaces/adminInterfaces.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/gui/Login.fxml</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/gui/GestionClientsController.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/pidev2/Pidev2.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/gui/LoginController.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/util/Myconnexion.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/pidev2/FXML.fxml</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/img/images.jpg</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/services/adminServices.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/models/admin.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/Pidev2/src/interfaces/clientInterfaces.java</file>
+        </group>
     </open-files>
 </project-private>

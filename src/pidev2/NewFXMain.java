@@ -24,7 +24,7 @@ public class NewFXMain extends Application {
     
       @Override
     public void start(Stage primaryStage) {
-      try {
+    /*  try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AJOUT.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root,600,400);
@@ -34,18 +34,18 @@ public class NewFXMain extends Application {
 
         } catch (IOException ex) {
             System.out.println("error" + ex.getMessage());
-        }
-            /*try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Modifclient.fxml"));
+        }*/
+           try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Login.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root,600,400);
+            Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("modifier CLIENT");
+            primaryStage.setTitle("modifier admin");
             primaryStage.show();
 
         } catch (IOException ex) {
             System.out.println("error" + ex.getMessage());
-        }*/
+        }
             
        
     }

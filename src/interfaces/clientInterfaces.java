@@ -17,20 +17,10 @@ public interface clientInterfaces{
     
     
     public void addclient(client c);
-    public void modifierclient(int id ,String nom, String prenom);
-
-    /**
-     *
-     * @param nom
-     */
-    public void supprimerclient(String nom );
-    public void afficherclient(client c);
-    
-    
-    //list : select
-    public List<client> fetchclient();
-    
-    //affectation
+    public void modifierclient( int id,String nom, String prenom,long num_tel, String adresse,String sexe,String mail,String password);
+    public void supprimerclient(int id);
+    public client getOneById(int id);
+    public List<client> getall();
 
    
  

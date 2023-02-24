@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,14 +12,14 @@
    <children>
       <ImageView fitHeight="401.0" fitWidth="600.0" opacity="0.56">
          <image>
-            <Image url="@../../../../../Desktop/images.jpg" />
+            <Image url="@../img/images.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="200.0" layoutY="171.0" prefHeight="26.0" prefWidth="63.0" text="Username" />
+      <Label layoutX="200.0" layoutY="171.0" prefHeight="26.0" prefWidth="63.0" text="E-mail" />
       <Label layoutX="200.0" layoutY="207.0" prefHeight="26.0" prefWidth="63.0" text="Password" />
-      <TextField fx:id="Username" layoutX="276.0" layoutY="172.0" promptText="username" />
-      <TextField fx:id="Password" layoutX="277.0" layoutY="208.0" promptText="Password" />
-      <Button layoutX="456.0" layoutY="290.0" mnemonicParsing="false" onAction="#LogIN" text="LogIN" />
-      <Label fx:id="status" layoutX="47.0" layoutY="307.0" text="status" />
+      <TextField fx:id="tfemail" layoutX="276.0" layoutY="172.0" promptText="E-mail" />
+      <Button fx:id="btnLogin" layoutX="456.0" layoutY="290.0" mnemonicParsing="false" onAction="#btnLoginAction" text="LogIN" />
+      <Button fx:id="btnInscription" layoutX="121.0" layoutY="290.0" mnemonicParsing="false" onAction="#btnInscriptionAction" text="Inscription" />
+      <PasswordField fx:id="passwordField" layoutX="277.0" layoutY="208.0" />
    </children>
 </AnchorPane>

@@ -20,6 +20,7 @@ public class client {
     private String adresse;
     private long num_tel;
     private String mail ;
+    private String password ; 
    
    
     
@@ -29,72 +30,93 @@ public class client {
     {
     }
 
-    public client(String nom, String prenom, String sexe, String adresse, String mail) {
+    public client(int id_client, String nom, String prenom, String sexe, String adresse, long num_tel, String mail, String password) {
+        this.id_client = id_client;
         this.nom = nom;
         this.prenom = prenom;
         this.sexe = sexe;
         this.adresse = adresse;
+        this.num_tel = num_tel;
         this.mail = mail;
-      
-        
-        
+        this.password = password;
     }
-    
-    //getters and setters
-    public int getId() {
+
+    public client(String nom, String prenom, String sexe, String adresse, long num_tel, String mail, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.adresse = adresse;
+        this.num_tel = num_tel;
+        this.mail = mail;
+        this.password = password;
+    }
+
+    public int getId_client() {
         return id_client;
     }
 
-    public void setId(int id) {
-        this.id_client = id;
+    public void setId_client(int id_client) {
+        this.id_client = id_client;
     }
 
-    public String getName() {
+    public String getNom() {
         return nom;
     }
 
-    public void setName(String nom) {
+    public void setNom(String nom) {
         this.nom = nom;
     }
-    public String getprenom() {
+
+    public String getPrenom() {
         return prenom;
     }
 
-    public void setprenom(String prenom) 
-    {
+    public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
- public String getsexe() {
+
+    public String getSexe() {
         return sexe;
     }
 
-    public void setsexe(String sexe) {
+    public void setSexe(String sexe) {
         this.sexe = sexe;
     }
-     public String getadresse() {
+
+    public String getAdresse() {
         return adresse;
     }
 
-    public void setadresse(String adresse) {
+    public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
 
-
-    public long getNumber() {
+    public long getNum_tel() {
         return num_tel;
     }
 
-    public void setNumber(long number) {
-        this.num_tel = number;
+    public void setNum_tel(long num_tel) {
+        this.num_tel = num_tel;
     }
 
-    public String getmail() {
+    public String getMail() {
         return mail;
     }
 
-    public void setmail(String mail) {
+    public void setMail(String mail) {
         this.mail = mail;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+  
+
  
     
     
@@ -102,7 +124,9 @@ public class client {
 
     @Override
     public String toString() {
-        return "client{" + "id=" + id_client + ", name=" + nom+ ",  prenom=" + prenom + ",sexe=" + sexe + ",sexe=" + adresse + ",number=" + num_tel + '}';
+        return "client{" + "id_client=" + id_client + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", adresse=" + adresse + ", num_tel=" + num_tel + ", mail=" + mail + ", password=" + password + '}';
     }
+
+ 
     
 }
