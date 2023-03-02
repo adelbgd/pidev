@@ -34,12 +34,13 @@ public class CommandeService implements CommandeInterface{
     public void addCommande(Commande c) {
         try {
 
-            String req = "INSERT INTO `commande`(`date_commande`, `client`, `produit`) VALUES(?,?,?)";
+            String req = "INSERT INTO `commande`(`date_commande`, `client`, `produit`, `id_livraison`) VALUES(?,?,?,?)";
             //Statement st = cnx.Statement();
             PreparedStatement st = cnx.prepareStatement(req);
             st.setDate(1, new java.sql.Date(c.getDate_commande().getTime()));
             st.setString(2, c.getClient());
             st.setString(3, c.getProduit());
+            st.setInt(4, c.getId_livraison().getId_livraison());
 
             st.executeUpdate();
             System.out.println("Commande Added successfully!");
@@ -63,6 +64,9 @@ public class CommandeService implements CommandeInterface{
                 c.setDate_commande(rs.getDate("date_commande"));
                 c.setClient(rs.getString("client"));
                 c.setProduit(rs.getString("produit"));
+                Livraison l = new Livraison();
+                    l.setId_livraison(rs.getInt(5));
+                    c.setId_livraison(l);
                 
                 
                 Commandes.add(c);
@@ -133,11 +137,13 @@ public class CommandeService implements CommandeInterface{
             Statement ste = cnx.createStatement();
             ResultSet res=ste.executeQuery(req);
             while(res.next()){
-               
+               LivraisonService se = new LivraisonService();
               c.setId_commande(res.getInt(1));
               c.setDate_commande(res.getDate(2));
               c.setClient(res.getString(3));
               c.setProduit(res.getString(4));
+              Livraison l = se.rechercherLivraisonbyid(res.getInt(5));
+              c.setId_livraison(l);
               
                   
             }

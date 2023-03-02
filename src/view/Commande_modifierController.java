@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -40,12 +42,6 @@ public class Commande_modifierController implements Initializable {
     @FXML
     private Button modifier_c;
 
-    /**
-     * Initializes the controller class.
-     */
-    
-     @FXML
-    private ListView<Commande> list;
      Commande c = new Commande();
      CommandeService sp = new CommandeService();
      
@@ -57,7 +53,8 @@ public class Commande_modifierController implements Initializable {
 
     void getCommande(Commande c){
         LocalDate d = modif_date_c.getValue(); 
-// c.set(java.sql.Date.valueOf(d));
+       
+  //c.setDate(java.sql.Date.valueOf(d));
     modif_client.setText(c.getClient()); 
     modif_produit.setText(c.getProduit());
 }
@@ -85,6 +82,24 @@ public class Commande_modifierController implements Initializable {
        
          String produit = modif_produit.getText();
          String type = modif_client.getText();
+         
+         
+          // Vérifier que les champs ne sont pas vides
+    if (produit.isEmpty() || type.isEmpty()) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez remplir tous les champs");
+        alert.showAndWait();
+        return;
+    }
+         
+         
+         
+         
+         
+         
+         
        
         LocalDate d = modif_date_c.getValue(); 
         c.setDate_commande(java.sql.Date.valueOf(d));
@@ -94,7 +109,15 @@ public class Commande_modifierController implements Initializable {
         
       
            sp.updateCommande(c);
-        
+           
+           // Afficher un message de confirmation
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Confirmation");
+    alert.setHeaderText(null);
+    alert.setContentText("La commande a été modifié avec succès");
+    alert.showAndWait();
     }
+        
+    
     
 }

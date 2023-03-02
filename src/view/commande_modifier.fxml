@@ -4,25 +4,34 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BDC3C7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Commande_modifierController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Commande_modifierController">
    <children>
-      <Label layoutX="233.0" layoutY="30.0" text="Modifier Commande" textFill="#45477b">
+      <Label layoutX="291.0" layoutY="30.0" text="Modifier Commande">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <VBox prefHeight="400.0" prefWidth="131.0" style="-fx-background-color: #45477b;" />
-      <Label layoutX="169.0" layoutY="108.0" text="Date Commande" />
-      <Label layoutX="169.0" layoutY="164.0" text="Client" />
-      <Label layoutX="169.0" layoutY="224.0" text="Produit" />
-      <TextField fx:id="modif_client" layoutX="279.0" layoutY="160.0" />
-      <TextField fx:id="modif_produit" layoutX="279.0" layoutY="220.0" />
-      <DatePicker fx:id="modif_date_c" layoutX="279.0" layoutY="104.0" />
-      <Button fx:id="retour2" layoutX="267.0" layoutY="301.0" mnemonicParsing="false" onAction="#retour2" text="Retour" />
-      <Button fx:id="modifier_c" layoutX="390.0" layoutY="301.0" mnemonicParsing="false" onAction="#modifier_c" text="Modifier" />
+      <Label layoutX="258.0" layoutY="122.0" text="Date Commande" />
+      <Label layoutX="258.0" layoutY="178.0" text="Client" />
+      <Label layoutX="258.0" layoutY="238.0" text="Produit" />
+      <TextField fx:id="modif_client" layoutX="368.0" layoutY="174.0" />
+      <TextField fx:id="modif_produit" layoutX="368.0" layoutY="234.0" />
+      <DatePicker fx:id="modif_date_c" layoutX="368.0" layoutY="118.0" />
+      <Button fx:id="modifier_c" layoutX="302.0" layoutY="322.0" mnemonicParsing="false" onAction="#modifier_c" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: BLACK;" text="Modifier" textFill="WHITE" />
+      <AnchorPane prefHeight="412.0" prefWidth="179.0" style="-fx-background-color: BLACK;">
+         <children>
+            <ImageView fitHeight="99.0" fitWidth="66.0" layoutX="57.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/325464498_2384676458375469_7718240765571886875_n.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="retour2" layoutX="59.0" layoutY="361.0" mnemonicParsing="false" onAction="#retour2" style="-fx-background-color: WHITE;" text="Retour" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

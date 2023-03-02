@@ -37,7 +37,6 @@ public class Livraison_modifierrController implements Initializable {
     private TextField modif_lieu;
     @FXML
     private TextField modif_status;
-    @FXML
     private TextField modif_mode;
     @FXML
     private TextField modif_frais;
@@ -48,12 +47,6 @@ public class Livraison_modifierrController implements Initializable {
     @FXML
     private Button modifier_l;
 
-    /**
-     * Initializes the controller class.
-     */
-    
-     @FXML
-    private ListView<Livraison> list1;
      Livraison l = new Livraison();
      LivraisonService sp = new LivraisonService();
     @Override
@@ -65,7 +58,7 @@ public class Livraison_modifierrController implements Initializable {
         LocalDate d = modif_date.getValue(); 
 // c.set(java.sql.Date.valueOf(d));
     modif_frais.setText(Integer.toString(l.getFrais_livraison())); 
-    modif_mode.setText(l.getMode_livraison());
+    
     modif_status.setText(l.getStatus_livraison());
     modif_lieu.setText(l.getLieu_livraison());
 }
@@ -93,11 +86,11 @@ public class Livraison_modifierrController implements Initializable {
        
          String lieu = modif_lieu.getText();
          String status = modif_status.getText();
-         String mode = modif_mode.getText();
+         
          String frais = modif_frais.getText();
          
          // Vérifier que les champs ne sont pas vides
-    if (lieu.isEmpty() || status.isEmpty() || mode.isEmpty()  || frais.isEmpty()) {
+    if (lieu.isEmpty() || status.isEmpty() ||  frais.isEmpty()) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText(null);
@@ -131,7 +124,7 @@ Frais = Integer.parseInt(frais);
         l.setDate_livraison(java.sql.Date.valueOf(d));
         l.setLieu_livraison(lieu);
         l.setStatus_livraison(status);
-        l.setMode_livraison(mode);
+        
         l.setFrais_livraison(Frais);
         
            sp.updateLivraison(l);

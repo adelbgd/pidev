@@ -25,7 +25,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Livraison;
 import interfaces.LivraisonInterface;
+import java.util.ArrayList;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import services.LivraisonService;
 /**
  * FXML Controller class
@@ -50,6 +52,8 @@ public class Livraison_acceuilController implements Initializable {
     private ListView<Livraison> list1;
     
     LivraisonInterface sp= new LivraisonService();
+    @FXML
+    private ListView<String> list4;
 
     /**
      * Initializes the controller class.
@@ -57,7 +61,7 @@ public class Livraison_acceuilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Set up the list view with custom cell factory
-        list1.setCellFactory(param -> new ListCell<Livraison>() {
+        /**list1.setCellFactory(param -> new ListCell<Livraison>() {
             @Override
             protected void updateItem(Livraison item, boolean empty) {
                 super.updateItem(item, empty);
@@ -65,7 +69,7 @@ public class Livraison_acceuilController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-setText(item.getDate_livraison()+ " - " + item.getLieu_livraison()+ " - " + item.getStatus_livraison()+ " - " + item.getMode_livraison()+ " - " + item.getFrais_livraison());
+setText(item.getDate_livraison()+ " - " + item.getLieu_livraison()+ " - " + item.getStatus_livraison()+ " - "  + item.getFrais_livraison());
                 }
             }
         });
@@ -73,7 +77,47 @@ setText(item.getDate_livraison()+ " - " + item.getLieu_livraison()+ " - " + item
         // Load the data for the list view
         LivraisonService fs = new LivraisonService();
         List<Livraison> livraisons = fs.fetchLivraisons();
-        list1.getItems().addAll(livraisons);  
+        list1.getItems().addAll(livraisons);**/
+        
+        list1.setCellFactory(param -> new ListCell<Livraison>() {
+    
+@Override
+protected void updateItem(Livraison item, boolean empty) {
+super.updateItem(item, empty);
+
+if (empty || item == null) {
+setText(null);
+} else {
+setText(item.getDate_livraison().toString());
+}
+}
+});
+
+// Load the data for the Commande list view
+List<Livraison> livraisons = sp.fetchLivraisons();
+list1.getItems().addAll(livraisons);
+
+// Set up the event handler for the formation list view
+list1.setOnMouseClicked((MouseEvent event) -> {
+if (event.getClickCount­() == 2) {
+Livraison selectedLivraison = list1.getSelectionModel().ge­tSelectedItem();
+
+
+// Create a list of strings to display the details of the selected formation
+List<String> details = new ArrayList<>();
+details.add("Lieu livraison: " + selectedLivraison.getLieu_livraison());
+details.add("Status livraison: " + selectedLivraison.getStatus_livraison());
+details.add("Frais livraison: " + selectedLivraison.getFrais_livraison());
+
+//The details list view
+  list4.getItems().clear();
+                list4.getItems().addAll(details);
+
+// Hide the formation list view
+//list1.setVisible(false);
+}
+}); 
+        
     }  
                 
 

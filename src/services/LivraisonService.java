@@ -32,14 +32,14 @@ public class LivraisonService implements LivraisonInterface{
     public void addLivraison(Livraison l) {
         try {
 
-            String req = "INSERT INTO `livraison`(`date_livraison`, `lieu_livraison`, `status_livraison`, `mode_livraison`, `frais_livraison`) VALUES(?,?,?,?,?)";
+            String req = "INSERT INTO `livraison`(`date_livraison`, `lieu_livraison`, `status_livraison`, `frais_livraison`) VALUES(?,?,?,?)";
             //Statement st = cnx.Statement();
             PreparedStatement st = cnx.prepareStatement(req);
             st.setDate(1, new java.sql.Date(l.getDate_livraison().getTime()));
             st.setString(2, l.getLieu_livraison());
             st.setString(3, l.getStatus_livraison());
-            st.setString(4, l.getMode_livraison());
-            st.setInt(5, l.getFrais_livraison());
+            
+            st.setInt(4, l.getFrais_livraison());
 
             st.executeUpdate();
             System.out.println("Livraison Added successfully!");
@@ -62,7 +62,6 @@ public class LivraisonService implements LivraisonInterface{
                 l.setDate_livraison(rs.getDate("date_livraison"));
                 l.setLieu_livraison(rs.getString("lieu_livraison"));
                 l.setStatus_livraison(rs.getString("status_livraison"));
-                l.setMode_livraison(rs.getString("mode_livraison"));
                 l.setFrais_livraison(rs.getInt("frais_livraison"));
                 
                 
@@ -113,7 +112,7 @@ public class LivraisonService implements LivraisonInterface{
         
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String req = "UPDATE livraison SET `date_livraison`='"+l.getDate_livraison()+"',`lieu_livraison`='"+l.getLieu_livraison()+"',`status_livraison`='"+l.getStatus_livraison()+"',`mode_livraison`='"+l.getMode_livraison()+"',`frais_livraison`='"+l.getFrais_livraison()+"' WHERE id_livraison = "+l.getId_livraison();
+            String req = "UPDATE livraison SET `date_livraison`='"+l.getDate_livraison()+"',`lieu_livraison`='"+l.getLieu_livraison()+"',`status_livraison`='"+l.getStatus_livraison()+"',`frais_livraison`='"+l.getFrais_livraison()+"' WHERE id_livraison = "+l.getId_livraison();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("livraison updated successfully!");
@@ -140,8 +139,8 @@ public class LivraisonService implements LivraisonInterface{
               l.setDate_livraison(res.getDate(2));
               l.setLieu_livraison(res.getString(3));
               l.setStatus_livraison(res.getString(4));
-              l.setMode_livraison(res.getString(5));
-              l.setFrais_livraison(res.getInt(6));
+           
+              l.setFrais_livraison(res.getInt(5));
               
                   
             }
@@ -155,7 +154,7 @@ public class LivraisonService implements LivraisonInterface{
     public void afficherLivraison(Livraison l){
         
         try {
-            String req = "SELECT `id_livraison`, `date_livraison`, `lieu_livraison`, `status_livraison`, `mode_livraison`, `frais_livraison` FROM `livraison` WHERE id_livraison = "+l.getId_livraison();
+            String req = "SELECT `id_livraison`, `date_livraison`, `lieu_livraison`, `status_livraison`, `frais_livraison` FROM `livraison` WHERE id_livraison = "+l.getId_livraison();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("livraison found successfully!");

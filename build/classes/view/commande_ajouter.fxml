@@ -4,25 +4,36 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #BDC3C7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Commande_ajouterController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Commande_ajouterController">
    <children>
-      <Label layoutX="252.0" layoutY="41.0" text="Ajouter Commande" textFill="#45477b">
+      <Label layoutX="252.0" layoutY="41.0" text="Ajouter Commande">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="197.0" layoutY="114.0" text="Date commande" />
-      <Label layoutX="197.0" layoutY="175.0" text="produit" />
-      <Label layoutX="202.0" layoutY="231.0" text="client" />
-      <TextField fx:id="produit_c" layoutX="337.0" layoutY="171.0" />
-      <TextField fx:id="client_c" layoutX="337.0" layoutY="227.0" />
-      <DatePicker fx:id="text_date_c" layoutX="337.0" layoutY="110.0" />
-      <VBox prefHeight="400.0" prefWidth="136.0" style="-fx-background-color: #45477b;" />
-      <Button fx:id="retour1" layoutX="526.0" layoutY="352.0" mnemonicParsing="false" onAction="#retour1" text="Retour" />
-      <Button fx:id="ajouter_c" layoutX="337.0" layoutY="286.0" mnemonicParsing="false" onAction="#ajouter_c" prefHeight="27.0" prefWidth="150.0" text="Ajouter" />
+      <Label layoutX="254.0" layoutY="114.0" text="Date commande" />
+      <Label layoutX="254.0" layoutY="175.0" text="produit" />
+      <Label layoutX="252.0" layoutY="231.0" text="client" />
+      <TextField fx:id="produit_c" layoutX="360.0" layoutY="171.0" />
+      <TextField fx:id="client_c" layoutX="360.0" layoutY="227.0" />
+      <DatePicker fx:id="text_date_c" layoutX="360.0" layoutY="110.0" />
+      <Button fx:id="ajouter_c" layoutX="340.0" layoutY="341.0" mnemonicParsing="false" onAction="#ajouter_c" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: BLACK;" text="Ajouter" textFill="WHITE" />
+      <Label layoutX="252.0" layoutY="279.0" text="Id Livraison" />
+      <TextField fx:id="id_liv_com" layoutX="360.0" layoutY="275.0" />
+      <AnchorPane prefHeight="410.0" prefWidth="179.0" style="-fx-background-color: BLACK;">
+         <children>
+            <ImageView fitHeight="61.0" fitWidth="60.0" layoutX="68.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/325464498_2384676458375469_7718240765571886875_n.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="retour1" layoutX="64.0" layoutY="361.0" mnemonicParsing="false" onAction="#retour1" style="-fx-background-color: WHITE;" text="Retour" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

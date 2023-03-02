@@ -24,8 +24,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Commande;
 import interfaces.CommandeInterface;
+import java.util.ArrayList;
 import javafx.scene.control.Label;
 import services.CommandeService;
+import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
@@ -47,10 +49,12 @@ public class Commande_acceuilController implements Initializable {
     private Button ajouter_c0;
     @FXML
     private Button modifier_c0;
-    
+    @FXML
+    private ListView<String> list2;
     
     CommandeInterface sp= new CommandeService();
     private Button quitter1;
+   
 
     /**
      * Initializes the controller class.
@@ -58,7 +62,7 @@ public class Commande_acceuilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Set up the list view with custom cell factory
-        list.setCellFactory(param -> new ListCell<Commande>() {
+        /*list.setCellFactory(param -> new ListCell<Commande>() {
             @Override
             protected void updateItem(Commande item, boolean empty) {
                 super.updateItem(item, empty);
@@ -74,8 +78,49 @@ setText(item.getDate_commande()+ " - " + item.getClient()+ " - " + item.getProdu
         // Load the data for the list view
         CommandeService fs = new CommandeService();
         List<Commande> commandes = fs.fetchCommandes();
-        list.getItems().addAll(commandes);  
-    }  
+        list.getItems().addAll(commandes);  */
+        
+        // Set up the cell factory for the formation list view
+list.setCellFactory(param -> new ListCell<Commande>() {
+    
+@Override
+protected void updateItem(Commande item, boolean empty) {
+super.updateItem(item, empty);
+
+if (empty || item == null) {
+setText(null);
+} else {
+setText(item.getClient());
+}
+}
+});
+
+// Load the data for the Commande list view
+List<Commande> commandes = sp.fetchCommandes();
+list.getItems().addAll(commandes);
+
+// Set up the event handler for the formation list view
+list.setOnMouseClicked((MouseEvent event) -> {
+if (event.getClickCount­() == 2) {
+Commande selectedCommande = list.getSelectionModel().ge­tSelectedItem();
+
+
+// Create a list of strings to display the details of the selected formation
+List<String> details = new ArrayList<>();
+details.add("Date commande: " + selectedCommande.getDate_commande());
+details.add("Produit: " + selectedCommande.getProduit());
+
+
+//The details list view
+  list2.getItems().clear();
+                list2.getItems().addAll(details);
+
+// Hide the formation list view
+//list.setVisible(false);
+}
+});
+}
+ 
                 
 
     @FXML

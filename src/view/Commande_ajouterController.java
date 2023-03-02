@@ -15,11 +15,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.Commande;
+import models.Livraison;
 import services.CommandeService;
 
 /**
@@ -39,6 +41,8 @@ public class Commande_ajouterController implements Initializable {
     private Button retour1;
     @FXML
     private Button ajouter_c;
+    @FXML
+    private TextField id_liv_com;
 
     /**
      * Initializes the controller class.
@@ -66,14 +70,25 @@ public class Commande_ajouterController implements Initializable {
     @FXML
     private void ajouter_c(ActionEvent event) {
         Commande c = new Commande();
+        if (produit_c.getText().isEmpty() || client_c.getText().isEmpty() || text_date_c.getValue() == null   ){
+             Alert alert = new Alert (Alert.AlertType.INFORMATION);
+       alert.setTitle("Commande ");
+       alert.setHeaderText("ATTENTION !!");
+       alert.setContentText("veuillez remplir toutes les cases !!");
+       alert.show();
+        }else{
        
         LocalDate d = text_date_c.getValue(); 
         c.setDate_commande(java.sql.Date.valueOf(d));     
         c.setClient(client_c.getText());
         c.setProduit(produit_c.getText());
+        Livraison l = new Livraison();
+        l.setId_livraison(Integer.parseInt(id_liv_com.getText()));
+        c.setId_livraison(l);
         
            CommandeService fs= new CommandeService();
            fs.addCommande(c);
     }
-    
+  }  
 }
+  

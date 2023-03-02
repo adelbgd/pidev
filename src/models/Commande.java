@@ -17,16 +17,26 @@ public class Commande {
     private Date date_commande;
     private String client;
     private String produit;
+    private Livraison id_livraison;
 
     public Commande() {
         
     }
 
-    public Commande(int id_commande, Date date_commande, String client, String produit) {
+    public Commande(int id_commande, Date date_commande, String client, String produit,Livraison id_livraison) {
         this.id_commande = id_commande;
         this.date_commande = date_commande;
         this.client = client;
         this.produit = produit;
+        this.id_livraison=id_livraison;
+    }
+
+    public Livraison getId_livraison() {
+        return id_livraison;
+    }
+
+    public void setId_livraison(Livraison id_livraison) {
+        this.id_livraison = id_livraison;
     }
 
     public int getId_commande() {
@@ -63,8 +73,10 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "id_commande=" + id_commande + ", date_commande=" + date_commande + ", client=" + client + ", produit=" + produit + '}';
+        return "Commande{" + "id_commande=" + id_commande + ", date_commande=" + date_commande + ", client=" + client + ", produit=" + produit + ", id_livraison=" + id_livraison + '}';
     }
+
+    
 
    
 }

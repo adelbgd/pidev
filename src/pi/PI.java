@@ -101,7 +101,7 @@ public class PI {
          l1.setLieu_livraison("tunis");
          l1.setStatus_livraison("en cours");
          l1.setFrais_livraison(7);
-         l1.setMode_livraison("livraison à domicile");
+         
          //ps1.addLivraison(l1);
         
         
