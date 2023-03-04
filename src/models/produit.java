@@ -5,9 +5,12 @@
  */
 package models;
 
+import java.awt.Image;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+
 
 
 /**
@@ -20,8 +23,26 @@ public class produit {
     private float valeur;
     private Date date;
     private Categorie catego;
+    private String image;
+    private int id_catego;
 
-    public produit(int id_prod, String description, String statut, float valeur, Date date, Categorie catego, String nom) {
+    public int getId_catego() {
+        return id_catego;
+    }
+
+    public void setId_catego(int id_catego) {
+        this.id_catego = id_catego;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public produit(int id_prod, String description, String statut, float valeur, Date date, Categorie catego, String nom, String image) {
         this.id_prod = id_prod;
         this.description = description;
         this.statut = statut;
@@ -98,6 +119,14 @@ public class produit {
     @Override
     public String toString() {
         return "produit{" + "id_prod=" + id_prod + ", description=" + description + ", statut=" + statut + ", valeur=" + valeur + ", date=" + date + ", catego=" + catego + '}';
+    }
+
+    public List<Integer> getRatings() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setAverageRating(double averageRating) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

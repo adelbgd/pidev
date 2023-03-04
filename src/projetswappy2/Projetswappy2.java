@@ -31,8 +31,40 @@ public class Projetswappy2 {
         
         produit p1 = new produit ();
         
-        produit p2 = new produit ();
+        produit p3 = new produit ();
+         p3.setNom("IPHONE");
+        p3.setDescription("NEUF");
+        p3.setStatut("dispo");
+        p3.setValeur(2500);
+         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date1 = format.parse("2010-03-2010");
+            p1.setDate(date1);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+       
+       // ps.addproduit(p3);
         
+         produit p4 = new produit ();
+         p4.setNom("IPHONE");
+        p4.setDescription("NEUF");
+        p4.setStatut("dispo");
+        p4.setValeur(2500);
+         
+        try {
+            Date date1 = format.parse("2010-03-2010");
+            p1.setDate(date1);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        p4.setImage("dia.png");
+       
+       // ps.addproduit(p4);
+        
+        
+        //ps.getRecommendations(p4);
+        //ps.rechercherbyNomproduit("iphone");
        // produit p4 = new produit ();
        /** p3.setNom("IPHONE");
         p3.setDescription("NEUF");

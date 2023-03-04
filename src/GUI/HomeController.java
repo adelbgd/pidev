@@ -6,8 +6,10 @@
 package GUI;
 
 import interfaces.produitinterface;
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -25,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import models.produit;
 import services.produitservice;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -45,13 +48,15 @@ public class HomeController implements Initializable {
     private TextField recherche_text;
     @FXML
     private Button rechercher_p;
-
+    @FXML
+    private ListView<String> list1;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        list.setCellFactory(param -> new ListCell<produit>() {
+        /**list.setCellFactory(param -> new ListCell<produit>() {
             @Override
             protected void updateItem(produit item, boolean empty) {
                 super.updateItem(item, empty);
@@ -59,7 +64,7 @@ public class HomeController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-setText(item.getNom()+ " - " + item.getDescription()+ " - " + item.getStatut()+" - "+item.getValeur()+" - "+item.getDate());
+setText(item.getNom()+ " - " + item.getDescription()+ " - " + item.getStatut()+" - "+item.getValeur()+" - "+item.getDate()+" - "+item.getImage());
                 }
             }
         });
@@ -67,19 +72,63 @@ setText(item.getNom()+ " - " + item.getDescription()+ " - " + item.getStatut()+"
         // Load the data for the list view
         produitservice fs = new produitservice();
         List<produit> produits = fs.fetchProduits();
-        list.getItems().addAll(produits);  
-    }
+        list.getItems().addAll(produits);**/
+        
+        list.setCellFactory(param -> new ListCell<produit>() {
+    
+@Override
+protected void updateItem(produit item, boolean empty) {
+    
+super.updateItem(item, empty);
+
+if (empty || item == null) {
+setText(null);
+} else {
+setText(item.getNom());
+}
+}
+});
+
+// Load the data for the Commande list view
+List<produit> produits = sp.fetchProduits();
+list.getItems().addAll(produits);
+
+// Set up the event handler for the formation list view
+list.setOnMouseClicked((MouseEvent event) -> {
+if (event.getClickCount­() == 2) {
+produit selectedCommande = list.getSelectionModel().ge­tSelectedItem();
+
+
+// Create a list of strings to display the details of the selected formation
+List<String> details = new ArrayList<>();
+details.add("Description: " + selectedCommande.getDescription());
+details.add("Statut: " + selectedCommande.getStatut());
+details.add("Valeur: " + selectedCommande.getValeur());
+details.add("Date: " + selectedCommande.getDate());
+
+
+//The details list view
+  list1.getItems().clear();
+                list1.getItems().addAll(details);
+
+// Hide the formation list view
+//list.setVisible(false);
+}
+});
+}
+        
+    
     
     @FXML
     private void rechercher_p(ActionEvent event) {
           // TODO
     // Récupérer l'ID de la COMMANDE à rechercher depuis le champ de texte
-    int idproduit = Integer.parseInt(recherche_text.getText());
+    String nomproduit = recherche_text.getText();
 
     // Appeler le service pour récupérer la COMMANDE correspondant à l'ID
-    produit produitRecherche = (produit) sp.rechercherbyIdproduit(idproduit);
+    produit produitRecherche = (produit) sp.rechercherbyNomproduit(nomproduit);
 
-    if (produitRecherche != null && produitRecherche.getValeur()!=0  ) {
+    if (produitRecherche != null   ) {
         // Afficher l formation trouvé dans la ListView
         ObservableList<produit> produits = FXCollections.observableArrayList(produitRecherche);
         list.setItems(produits);
@@ -119,6 +168,12 @@ setText(item.getNom()+ " - " + item.getDescription()+ " - " + item.getStatut()+"
     // Create a new stage for the new view
     Stage stage = new Stage();
     stage.setScene(new Scene(loader.load()));
+    
+    
+    produit selectedproduit=list.getSelectionModel().getSelectedItem();
+        ModifierprodController ModifierprodController=loader.getController();
+        ModifierprodController.getProduit(selectedproduit);
+        ModifierprodController.p=selectedproduit;
 
     // Show the new stage and hide the current stage
     stage.show();

@@ -6,6 +6,12 @@
 package services;
 
 import interfaces.produitinterface;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,10 +38,20 @@ public class produitservice implements produitinterface{
     
     Connection cnx = MyConnection.getInstance().getCnx();
 
+    /**
+     *
+     * @param p
+     * @param s
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @Override
-    public void addproduit(produit p) {         
+    public void addproduit(produit p)  {         
         try {
-            String req = "INSERT INTO `produit`(`nom`, `description`, `statut`, `valeur`, `date`) VALUES (?,?,?,?,?)" ;
+            
+            
+        
+            String req = "INSERT INTO `produit`(`nom`, `description`, `statut`, `valeur`, `date`,`image`,`id_catego`) VALUES (?,?,?,?,?,?,?)" ;
             
             //Statement st = cnx.createStatement();
             PreparedStatement st = cnx.prepareStatement(req);
@@ -45,7 +61,13 @@ public class produitservice implements produitinterface{
              st.setString(3, p.getStatut());
              st.setFloat(4, p.getValeur());
              st.setDate(5, new java.sql.Date(p.getDate().getTime()));
-           
+             //InputStream inputStream = new FileInputStream(s);
+             //st.setBinaryStream(6, inputStream);
+             //InputStream is = new FileInputStream(new File(s));
+             st.setString(6, p.getImage());
+             st.setInt(7, p.getId_catego());
+             //st.setBlob(6,is);
+            
             st.executeUpdate();
             System.out.println("Produit Added successfully!");
         } catch (SQLException ex) {
@@ -70,6 +92,7 @@ public class produitservice implements produitinterface{
                 p.setStatut(rs.getString(4));
                 p.setValeur(rs.getFloat("valeur"));
                 p.setDate(rs.getDate("date"));
+                p.setImage(rs.getString(7));
                 
                 produits.add(p);
             }
@@ -112,13 +135,13 @@ public class produitservice implements produitinterface{
     }
     
     @Override
-    public void updateproduit(int id , String nom, String description, String statut, Float valeur, Date date){
+    public void updateproduit(produit p){
         
         try {
               
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             
-            String req = "UPDATE `produit` SET `nom`='" + nom + "',`description`='" + description +"',`statut`='" + statut + "',`valeur`='"+valeur+"',`date`='"+sdf.format(date)+"'  WHERE id_prod = " + id;
+            String req = "UPDATE `produit` SET `nom`='" + p.getNom() + "',`description`='" + p.getDescription() +"',`statut`='" + p.getStatut() + "',`valeur`='"+p.getValeur()+"',`date`='"+p.getDate()+"',`image`='"+p.getImage()+"',`id_catego`='"+p.getId_catego()+"'  WHERE id_prod = " + p.getId_prod();
             Statement st = cnx.createStatement();
            
             st.executeUpdate(req);
@@ -130,12 +153,14 @@ public class produitservice implements produitinterface{
         
     }
     @Override
-    public produit rechercherbyIdproduit(int id){
+    public produit rechercherbyNomproduit(String nom){
         
         produit p = new produit();
         try {
-            String req = "SELECT * FROM `produit` WHERE id_prod = "+id;
+            String req = "SELECT * FROM `produit` WHERE nom = ?";
             Statement ste = cnx.createStatement();
+            PreparedStatement stmt = cnx.prepareStatement(req);
+            stmt.setString(1, nom);
             ResultSet res=ste.executeQuery(req);
             while(res.next()){
                 
@@ -145,6 +170,7 @@ public class produitservice implements produitinterface{
               p.setStatut(res.getString(4));
               p.setValeur(res.getFloat(5));
               p.setDate(res.getDate(6));
+              p.setImage(res.getString(7));
             }
              } catch (SQLException ex) {
             Logger.getLogger(produitservice.class.getName()).log(Level.SEVERE, null, ex);
@@ -193,8 +219,37 @@ public class produitservice implements produitinterface{
         
         
     }
-    
-    
-    
+
+    public void setBlob(int i, InputStream is) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /**
+    @Override
+   public List<produit> getRecommendations(produit product) {
+    List<produit> recommendations = new ArrayList<>();
+    List<produit> allProducts = getAllProducts(); // récupère tous les produits
+
+    // Parcours de tous les produits
+    for (produit p : allProducts) {
+        if (!p.equals(product)) { // on ne recommande pas le même produit
+            if (areSimilarProducts(p, product)) { // si les produits sont similaires
+                recommendations.add(p); // ajoute le produit à la liste des recommandations
+            }
+        }
+    }
+
+    return recommendations;
+}
+
+private boolean areSimilarProducts(produit p1, produit p2) {
+    // Implémentation de l'algorithme de comparaison de produits similaires
+    // Ici, on peut comparer différents attributs des produits, comme leur catégorie, leur marque, etc.
+    // Pour simplifier, nous supposons que deux produits sont similaires s'ils ont le même nom.
+    return p1.getNom().equals(p2.getNom());
+}
+
+    private List<produit> getAllProducts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }**/
     
 }

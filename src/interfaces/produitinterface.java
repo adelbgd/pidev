@@ -14,6 +14,8 @@ import java.util.Date;
  *
  * @author Walid
  */
+import java.io.FileNotFoundException;
+import java.io.IOException;
 public interface produitinterface {
     
     public void addproduit(produit p);
@@ -27,14 +29,18 @@ public interface produitinterface {
     
     public void deletebyIdproduit(int id);
     
-    public void updateproduit(int id , String nom, String description, String statut, Float valeur, Date date);
+    public void updateproduit(produit p);
     // * @param id 
     
-    public produit rechercherbyIdproduit(int id);
+    public produit rechercherbyNomproduit(String nom);
     
     public void afficherproduit(produit p);
     
     public void tribydate();
+    
+   // public List<produit> getRecommendations(produit product);
+    
+    
     
     
     
