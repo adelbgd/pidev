@@ -90,7 +90,7 @@ super.updateItem(item, empty);
 if (empty || item == null) {
 setText(null);
 } else {
-setText(item.getClient());
+setText(item.getNom_prenom());
 }
 }
 });
@@ -108,7 +108,7 @@ Commande selectedCommande = list.getSelectionModel().ge­tSelectedItem();
 // Create a list of strings to display the details of the selected formation
 List<String> details = new ArrayList<>();
 details.add("Date commande: " + selectedCommande.getDate_commande());
-details.add("Produit: " + selectedCommande.getProduit());
+details.add("num: " + selectedCommande.getNum());
 
 
 //The details list view

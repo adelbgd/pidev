@@ -5,6 +5,11 @@
  */
 package view;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -35,15 +40,26 @@ public class Commande_ajouterController implements Initializable {
     private TextField produit_c;
     @FXML
     private TextField client_c;
-    @FXML
     private DatePicker text_date_c;
     @FXML
     private Button retour1;
     @FXML
     private Button ajouter_c;
-    @FXML
     private TextField id_liv_com;
+    @FXML
+    private TextField mail;
+    
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -70,7 +86,7 @@ public class Commande_ajouterController implements Initializable {
     @FXML
     private void ajouter_c(ActionEvent event) {
         Commande c = new Commande();
-        if (produit_c.getText().isEmpty() || client_c.getText().isEmpty() || text_date_c.getValue() == null   ){
+        if (produit_c.getText().isEmpty() || client_c.getText().isEmpty()|| mail.getText().isEmpty()    ){
              Alert alert = new Alert (Alert.AlertType.INFORMATION);
        alert.setTitle("Commande ");
        alert.setHeaderText("ATTENTION !!");
@@ -78,16 +94,19 @@ public class Commande_ajouterController implements Initializable {
        alert.show();
         }else{
        
-        LocalDate d = text_date_c.getValue(); 
-        c.setDate_commande(java.sql.Date.valueOf(d));     
-        c.setClient(client_c.getText());
-        c.setProduit(produit_c.getText());
-        Livraison l = new Livraison();
-        l.setId_livraison(Integer.parseInt(id_liv_com.getText()));
-        c.setId_livraison(l);
+      
+        LocalDate d1 = LocalDate.now();
+        c.setDate_commande(java.sql.Date.valueOf(d1));    
+        c.setNom_prenom(client_c.getText());
+        c.setNum(Integer.parseInt(produit_c.getText()));
+        c.setMail(mail.getText());
+        
         
            CommandeService fs= new CommandeService();
            fs.addCommande(c);
+           
+ 
+           
     }
   }  
 }

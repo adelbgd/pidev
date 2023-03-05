@@ -32,14 +32,15 @@ public class LivraisonService implements LivraisonInterface{
     public void addLivraison(Livraison l) {
         try {
 
-            String req = "INSERT INTO `livraison`(`date_livraison`, `lieu_livraison`, `status_livraison`, `frais_livraison`) VALUES(?,?,?,?)";
+            String req = "INSERT INTO `livraison`(`date_livraison`, `region`, `ville`, `compagnie`, `status_livraison`, `frais_livraison`) VALUES(?,?,?,?,?,?)";
             //Statement st = cnx.Statement();
             PreparedStatement st = cnx.prepareStatement(req);
             st.setDate(1, new java.sql.Date(l.getDate_livraison().getTime()));
             st.setString(2, l.getLieu_livraison());
-            st.setString(3, l.getStatus_livraison());
-            
-            st.setInt(4, l.getFrais_livraison());
+            st.setString(3, l.getVille());
+            st.setString(4, l.getComp());
+            st.setString(5, l.getStatus_livraison());
+            st.setInt(6, l.getFrais_livraison());
 
             st.executeUpdate();
             System.out.println("Livraison Added successfully!");
@@ -60,7 +61,9 @@ public class LivraisonService implements LivraisonInterface{
                 Livraison l = new Livraison();
                 l.setId_livraison(rs.getInt(1));
                 l.setDate_livraison(rs.getDate("date_livraison"));
-                l.setLieu_livraison(rs.getString("lieu_livraison"));
+                l.setLieu_livraison(rs.getString("region"));
+                l.setVille(rs.getString("ville"));
+                l.setComp(rs.getString("compagnie"));
                 l.setStatus_livraison(rs.getString("status_livraison"));
                 l.setFrais_livraison(rs.getInt("frais_livraison"));
                 
@@ -112,7 +115,7 @@ public class LivraisonService implements LivraisonInterface{
         
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String req = "UPDATE livraison SET `date_livraison`='"+l.getDate_livraison()+"',`lieu_livraison`='"+l.getLieu_livraison()+"',`status_livraison`='"+l.getStatus_livraison()+"',`frais_livraison`='"+l.getFrais_livraison()+"' WHERE id_livraison = "+l.getId_livraison();
+            String req = "UPDATE livraison SET `date_livraison`='"+l.getDate_livraison()+"',`region`='"+l.getLieu_livraison()+"',`ville`='"+l.getVille()+"',`compagnie`='"+l.getComp()+"',`status_livraison`='"+l.getStatus_livraison()+"',`frais_livraison`='"+l.getFrais_livraison()+"' WHERE id_livraison = "+l.getId_livraison();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("livraison updated successfully!");

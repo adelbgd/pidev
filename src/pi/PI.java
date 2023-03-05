@@ -42,8 +42,8 @@ public class PI {
             ex.printStackTrace();
         }
         
-         c1.setClient("ala");
-         c1.setProduit("shoes");
+         c1.setNom_prenom("ala");
+         c1.setNum(290883510);
          //ps.addCommande(c1);
         
     

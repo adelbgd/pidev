@@ -105,7 +105,9 @@ Livraison selectedLivraison = list1.getSelectionModel().ge­tSelectedItem();
 
 // Create a list of strings to display the details of the selected formation
 List<String> details = new ArrayList<>();
-details.add("Lieu livraison: " + selectedLivraison.getLieu_livraison());
+details.add("Region: " + selectedLivraison.getLieu_livraison());
+details.add("ville: " + selectedLivraison.getVille());
+details.add("compagnie : " + selectedLivraison.getComp());
 details.add("Status livraison: " + selectedLivraison.getStatus_livraison());
 details.add("Frais livraison: " + selectedLivraison.getFrais_livraison());
 

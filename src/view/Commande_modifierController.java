@@ -35,7 +35,6 @@ public class Commande_modifierController implements Initializable {
     private TextField modif_client;
     @FXML
     private TextField modif_produit;
-    @FXML
     private DatePicker modif_date_c;
     @FXML
     private Button retour2;
@@ -44,6 +43,8 @@ public class Commande_modifierController implements Initializable {
 
      Commande c = new Commande();
      CommandeService sp = new CommandeService();
+    @FXML
+    private TextField modif_mail;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,11 +53,12 @@ public class Commande_modifierController implements Initializable {
 
 
     void getCommande(Commande c){
-        LocalDate d = modif_date_c.getValue(); 
+        //LocalDate d = modif_date_c.getValue(); 
        
   //c.setDate(java.sql.Date.valueOf(d));
-    modif_client.setText(c.getClient()); 
-    modif_produit.setText(c.getProduit());
+    modif_client.setText(c.getNom_prenom()); 
+    modif_produit.setText(Integer.toString(c.getNum()));
+    modif_mail.setText(c.getMail()); 
 }
     
     @FXML
@@ -78,11 +80,11 @@ public class Commande_modifierController implements Initializable {
     @FXML
     private void modifier_c(ActionEvent event) {
         
-        LocalDate k = modif_date_c.getValue(); 
+        //LocalDate k = modif_date_c.getValue(); 
        
          String produit = modif_produit.getText();
          String type = modif_client.getText();
-         
+         String mail =modif_mail.getText();
          
           // Vérifier que les champs ne sont pas vides
     if (produit.isEmpty() || type.isEmpty()) {
@@ -101,10 +103,10 @@ public class Commande_modifierController implements Initializable {
          
          
        
-        LocalDate d = modif_date_c.getValue(); 
-        c.setDate_commande(java.sql.Date.valueOf(d));
-        c.setClient(modif_client.getText());
-        c.setProduit(modif_produit.getText());
+        
+        c.setNom_prenom(modif_client.getText());
+        c.setNum(Integer.parseInt(modif_produit.getText()));
+         c.setMail(modif_mail.getText());
        
         
       

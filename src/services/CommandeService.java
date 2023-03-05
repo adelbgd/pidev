@@ -5,6 +5,9 @@
  */
 package services;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import interfaces.CommandeInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +24,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author adelb
@@ -28,22 +32,39 @@ import java.util.logging.Logger;
 public class CommandeService implements CommandeInterface{
     //var
     Connection cnx = MyConnection.getInstance().getCnx();
-
+    
+    public static final String ACCOUNT_SID = "AC614916aafd426f5b1381b56b63312de0";     /// 
+    public static final String AUTH_TOKEN = "168bb11f6d7edfd5ba58926e2e7a33a5"; ///   
+    public static final String TWILIO_NUMBER = "+15673131084";
  
     @Override
     public void addCommande(Commande c) {
         try {
 
-            String req = "INSERT INTO `commande`(`date_commande`, `client`, `produit`, `id_livraison`) VALUES(?,?,?,?)";
+            String req = "INSERT INTO `commande`(`date_commande`, `nom_prenom`, `num`, `mail`) VALUES(?,?,?,?)";
             //Statement st = cnx.Statement();
             PreparedStatement st = cnx.prepareStatement(req);
             st.setDate(1, new java.sql.Date(c.getDate_commande().getTime()));
-            st.setString(2, c.getClient());
-            st.setString(3, c.getProduit());
-            st.setInt(4, c.getId_livraison().getId_livraison());
+            st.setString(2, c.getNom_prenom());
+            st.setInt(3, c.getNum());
+            st.setString(4, c.getMail());
+            //st.setInt(4, c.getId_livraison().getId_livraison());
 
             st.executeUpdate();
             System.out.println("Commande Added successfully!");
+            
+                      Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+
+        // Remplacez le numéro de téléphone ci-dessous par le numéro de téléphone tunisien que vous voulez envoyer le SMS
+       String phoneNumber = "+21629083510";
+      
+      Message message = Message.creator(new PhoneNumber(phoneNumber),new PhoneNumber(TWILIO_NUMBER),"Commande ajouter").create();
+       // Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(TWILIO_NUMBER),"Felicitation! la conventient avec votre garage a été accepté.").create();
+        System.out.println(message.getSid());
+            
+            
+            
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -62,11 +83,12 @@ public class CommandeService implements CommandeInterface{
                 Commande c = new Commande();
                 c.setId_commande(rs.getInt(1));
                 c.setDate_commande(rs.getDate("date_commande"));
-                c.setClient(rs.getString("client"));
-                c.setProduit(rs.getString("produit"));
-                Livraison l = new Livraison();
+                c.setNom_prenom(rs.getString("nom_prenom"));
+                c.setNum(rs.getInt("num"));
+                c.setMail(rs.getString("mail"));
+                /**Livraison l = new Livraison();
                     l.setId_livraison(rs.getInt(5));
-                    c.setId_livraison(l);
+                    c.setId_livraison(l);**/
                 
                 
                 Commandes.add(c);
@@ -115,7 +137,7 @@ public class CommandeService implements CommandeInterface{
         
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String req = "UPDATE `commande` SET `date_commande`='"+c.getDate_commande()+"',`client`='"+c.getClient()+"',`produit`='"+c.getProduit()+"' WHERE id_commande = "+c.getId_commande();
+            String req = "UPDATE `commande` SET `date_commande`='"+c.getDate_commande()+"',`nom_prenom`='"+c.getNom_prenom()+"',`num`='"+c.getNum()+"',`mail`='"+c.getMail()+"' WHERE id_commande = "+c.getId_commande();
             
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
@@ -140,10 +162,11 @@ public class CommandeService implements CommandeInterface{
                LivraisonService se = new LivraisonService();
               c.setId_commande(res.getInt(1));
               c.setDate_commande(res.getDate(2));
-              c.setClient(res.getString(3));
-              c.setProduit(res.getString(4));
-              Livraison l = se.rechercherLivraisonbyid(res.getInt(5));
-              c.setId_livraison(l);
+              c.setNom_prenom(res.getString(3));
+              c.setNum(res.getInt(4));
+              c.setMail(res.getString(5));
+              //Livraison l = se.rechercherLivraisonbyid(res.getInt(5));
+              //c.setId_livraison(l);
               
                   
             }
@@ -157,7 +180,7 @@ public class CommandeService implements CommandeInterface{
     public void afficherCommande(Commande c){
         
         try {
-            String req = "SELECT `id_commande`, `date_commande`, `client`, `produit` FROM `commande` WHERE id_commande = "+c.getId_commande();
+            String req = "SELECT `id_commande`, `date_commande`, `nom_prenom`, `num`, `mail` FROM `commande` WHERE id_commande = "+c.getId_commande();
             Statement st = cnx.createStatement();
             st.executeQuery(req);
             System.out.println("commande found successfully!");
