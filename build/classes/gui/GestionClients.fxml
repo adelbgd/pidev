@@ -65,5 +65,7 @@
             <TableColumn fx:id="ColumnId" prefWidth="92.79998779296875" text="id" visible="false" />
         </columns>
       </TableView>
+      <Label fx:id="tfid" layoutX="23.0" layoutY="149.0" text="ID" textFill="#dfd263" />
+      <TextField fx:id="TF_ID" layoutX="112.0" layoutY="145.0" promptText="ID" />
    </children>
 </AnchorPane>

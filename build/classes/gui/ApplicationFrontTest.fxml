@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ApplicationFrontTestController">
+   <children>
+      <Pane fx:id="Pane" layoutX="14.0" layoutY="100.0" prefHeight="620.0" prefWidth="1200.0">
+         <children>
+            <Label fx:id="LabelPrenom" layoutX="14.0" layoutY="46.0" prefHeight="67.0" prefWidth="172.0" />
+            <Label fx:id="labelName" layoutY="91.0" prefHeight="67.0" prefWidth="200.0" />
+            <Label fx:id="LabelId" layoutY="176.0" prefHeight="54.0" prefWidth="189.0" />
+         </children>
+      </Pane>
+      <HBox alignment="CENTER_LEFT" layoutX="7.0" prefHeight="100.0" prefWidth="1200.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="94.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/325464498_2384676458375469_7718240765571886875_n.png" />
+               </image>
+            </ImageView>
+            <Hyperlink onAction="#HyperRecAction" prefHeight="100.0" prefWidth="139.0" textAlignment="CENTER" textFill="#f2eaea">
+               <font>
+                  <Font name="Bell MT" size="20.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink onAction="#HyperRecAction" prefHeight="100.0" prefWidth="198.0" text="Produits " textAlignment="CENTER" textFill="#faf6f6">
+               <font>
+                  <Font name="Bell MT" size="20.0" />
+               </font>
+            </Hyperlink>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <Hyperlink onAction="#HyperRecAction" prefHeight="100.0" prefWidth="383.0" text="Reclamations" textAlignment="CENTER" textFill="#e7e3e3">
+               <font>
+                  <Font name="Bell MT" size="20.0" />
+               </font>
+            </Hyperlink>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
+            <Hyperlink text="Mon compte " textFill="#fff4f4">
+               <font>
+                  <Font name="Bell MT" size="19.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
