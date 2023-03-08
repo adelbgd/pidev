@@ -45,7 +45,7 @@ public class PI {
          c1.setNom_prenom("ala");
          c1.setNum(290883510);
          //ps.addCommande(c1);
-        
+         System.out.println(ps.readbyid(89)); 
     
          //System.out.println(ps.fetchCommandes());
         
@@ -87,7 +87,7 @@ public class PI {
         
        LivraisonInterface ps1= new LivraisonService();
        
-       Livraison l1 = new Livraison ();
+       Livraison l2 = new Livraison ();
         
         
         
@@ -98,11 +98,16 @@ public class PI {
         } catch (ParseException ex) {
             ex.printStackTrace();
         }**/
-         l1.setLieu_livraison("tunis");
-         l1.setStatus_livraison("en cours");
-         l1.setFrais_livraison(7);
-         
-         //ps1.addLivraison(l1);
+         l2.setDate_livraison(java.sql.Date.valueOf("2023-12-10"));
+         l2.setLieu_livraison("tunis");
+         l2.setVille("gabes");
+         l2.setComp("aze");
+         l2.setStatus_livraison("en cours");
+         l2.setFrais_livraison(7f);
+         Commande c = new Commande();
+         c.setId_commande(129);
+         l2.setId_commande(c);
+         //ps1.addLivraison(l2);
         
         
          

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="563.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AffichecordController">
+   <children>
+      <Label fx:id="id" layoutX="85.0" layoutY="96.0" opacity="0.0" prefHeight="18.0" prefWidth="0.0" text="id" />
+      <Button fx:id="cont" layoutX="647.0" layoutY="528.0" mnemonicParsing="false" onAction="#cont" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: BLACK;" text="Continuer" textFill="WHITE" />
+      <HBox layoutX="309.0" prefHeight="86.0" prefWidth="494.0" style="-fx-background-color: black;">
+         <children>
+            <Label prefHeight="86.0" prefWidth="385.0" text="Verification Vos Coordonnées " textFill="WHITE">
+               <font>
+                  <Font name="Calibri Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="-1.0" prefHeight="86.0" prefWidth="310.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/325464498_2384676458375469_7718240765571886875_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <VBox layoutX="196.0" layoutY="86.0" prefHeight="476.0" prefWidth="413.0" style="-fx-background-color: e4e2e2;" />
+      <Label layoutX="228.0" layoutY="121.0" text="Vos Coordonnées" textFill="#dc6e6e">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel" layoutX="409.0" layoutY="248.0" prefHeight="26.0" prefWidth="173.0" style="-fx-background-color: WHITE;" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="nom" layoutX="409.0" layoutY="194.0" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: WHITE;" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="email" layoutX="407.0" layoutY="303.0" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: WHITE;" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="230.0" layoutY="193.0" text="Nom et prénom">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="232.0" layoutY="250.0" text="Telephone">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="234.0" layoutY="304.0" text="Email">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="modif1" layoutX="283.0" layoutY="403.0" mnemonicParsing="false" onAction="#modif1" prefHeight="26.0" prefWidth="243.0" style="-fx-background-color: black;" text="Modifier" textFill="WHITE" />
+      <Button fx:id="supp" layoutX="13.0" layoutY="523.0" mnemonicParsing="false" onAction="#supp" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: BLACK;" text="Annuler" textFill="WHITE" />
+   </children>
+</AnchorPane>

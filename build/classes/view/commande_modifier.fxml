@@ -13,7 +13,6 @@
 <AnchorPane id="AnchorPane" layoutX="-2.0" prefHeight="563.0" prefWidth="799.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Commande_modifierController">
    <children>
       <Button fx:id="modifier_c" layoutX="635.0" layoutY="522.0" mnemonicParsing="false" onAction="#modifier_c" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: BLACK;" text="Modifier" textFill="WHITE" />
-      <Button fx:id="retour2" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#retour2" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: BLACK;" text="Retour" textFill="WHITE" />
       <HBox prefHeight="86.0" prefWidth="310.0" style="-fx-background-color: black;">
          <children>
             <ImageView fitHeight="85.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
@@ -25,7 +24,7 @@
       </HBox>
       <HBox layoutX="310.0" prefHeight="86.0" prefWidth="490.0" style="-fx-background-color: black;">
          <children>
-            <Label prefHeight="86.0" prefWidth="385.0" text="Passer la commande " textFill="WHITE">
+            <Label prefHeight="86.0" prefWidth="385.0" text="Modifier Vos Coordonnées" textFill="WHITE">
                <font>
                   <Font name="Calibri Italic" size="24.0" />
                </font>
@@ -67,5 +66,6 @@
          </font>
       </TextField>
       <TextField fx:id="modif_mail" layoutX="362.0" layoutY="379.0" prefHeight="38.0" prefWidth="199.0" />
+      <Label fx:id="idCom" layoutX="646.0" layoutY="121.0" opacity="0.0" text="idCom" />
    </children>
 </AnchorPane>

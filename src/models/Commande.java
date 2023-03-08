@@ -14,6 +14,7 @@ public class Commande {
 
  
     private int id_commande;
+    private int id_client;
     private Date date_commande;
     private String nom_prenom;
     private int num;
@@ -23,13 +24,24 @@ public class Commande {
         
     }
 
-    public Commande(int id_commande, Date date_commande, String nom_prenom, int num, String mail) {
+    public Commande(int id_commande, int id_client, Date date_commande, String nom_prenom, int num, String mail) {
         this.id_commande = id_commande;
+        this.id_client = id_client;
         this.date_commande = date_commande;
         this.nom_prenom = nom_prenom;
         this.num = num;
         this.mail = mail;
     }
+
+    public Commande(int id_client, Date date_commande, String nom_prenom, int num, String mail) {
+        this.id_client = id_client;
+        this.date_commande = date_commande;
+        this.nom_prenom = nom_prenom;
+        this.num = num;
+        this.mail = mail;
+    }
+
+    
 
     public int getId_commande() {
         return id_commande;
@@ -71,11 +83,20 @@ public class Commande {
         this.mail = mail;
     }
 
-    @Override
-    public String toString() {
-        return "Commande{" + "id_commande=" + id_commande + ", date_commande=" + date_commande + ", nom_prenom=" + nom_prenom + ", num=" + num + ", mail=" + mail + '}';
+    public int getId_client() {
+        return id_client;
     }
 
+    public void setId_client(int id_client) {
+        this.id_client = id_client;
+    }
+
+    @Override
+    public String toString() {
+        return "Commande{" + "id_commande=" + id_commande + ", id_client=" + id_client + ", date_commande=" + date_commande + ", nom_prenom=" + nom_prenom + ", num=" + num + ", mail=" + mail + '}';
+    }
+
+    
    
     }
 

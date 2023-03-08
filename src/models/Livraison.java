@@ -13,19 +13,21 @@ import java.util.Date;
  */
 public class Livraison {
     private int id_livraison;
+    private Commande id_commande;
     private Date date_livraison;
     private String lieu_livraison;
     private String ville;
     private String status_livraison;
     private String comp;
-    private int frais_livraison;
+    private Float frais_livraison;
     
 
     public Livraison() {
     }
 
-    public Livraison(int id_livraison, Date date_livraison, String lieu_livraison, String ville, String status_livraison, String comp, int frais_livraison) {
+    public Livraison(int id_livraison, Commande id_commande, Date date_livraison, String lieu_livraison, String ville, String status_livraison, String comp, Float frais_livraison) {
         this.id_livraison = id_livraison;
+        this.id_commande = id_commande;
         this.date_livraison = date_livraison;
         this.lieu_livraison = lieu_livraison;
         this.ville = ville;
@@ -33,6 +35,18 @@ public class Livraison {
         this.comp = comp;
         this.frais_livraison = frais_livraison;
     }
+
+    public Livraison(Commande id_commande, Date date_livraison, String lieu_livraison, String ville, String status_livraison, String comp, Float frais_livraison) {
+        this.id_commande = id_commande;
+        this.date_livraison = date_livraison;
+        this.lieu_livraison = lieu_livraison;
+        this.ville = ville;
+        this.status_livraison = status_livraison;
+        this.comp = comp;
+        this.frais_livraison = frais_livraison;
+    }
+    
+       
 
     public int getId_livraison() {
         return id_livraison;
@@ -42,6 +56,7 @@ public class Livraison {
         this.id_livraison = id_livraison;
     }
 
+    
     public Date getDate_livraison() {
         return date_livraison;
     }
@@ -82,21 +97,28 @@ public class Livraison {
         this.comp = comp;
     }
 
-    public int getFrais_livraison() {
+    public Float getFrais_livraison() {
         return frais_livraison;
     }
 
-    public void setFrais_livraison(int frais_livraison) {
+    public void setFrais_livraison(Float frais_livraison) {
         this.frais_livraison = frais_livraison;
     }
 
     @Override
     public String toString() {
-        return "Livraison{" + "id_livraison=" + id_livraison + ", date_livraison=" + date_livraison + ", lieu_livraison=" + lieu_livraison + ", ville=" + ville + ", status_livraison=" + status_livraison + ", comp=" + comp + ", frais_livraison=" + frais_livraison + '}';
+        return "Livraison{" + "id_livraison=" + id_livraison + ", id_commande=" + id_commande + ", date_livraison=" + date_livraison + ", lieu_livraison=" + lieu_livraison + ", ville=" + ville + ", status_livraison=" + status_livraison + ", comp=" + comp + ", frais_livraison=" + frais_livraison + '}';
     }
 
     
-   
-    
+
+    public Commande getId_commande() {
+        return id_commande;
+    }
+
+    public void setId_commande(Commande id_commande) {
+        this.id_commande = id_commande;
+    }
+
   
 }

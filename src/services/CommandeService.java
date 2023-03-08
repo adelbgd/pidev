@@ -34,7 +34,7 @@ public class CommandeService implements CommandeInterface{
     Connection cnx = MyConnection.getInstance().getCnx();
     
     public static final String ACCOUNT_SID = "AC614916aafd426f5b1381b56b63312de0";     /// 
-    public static final String AUTH_TOKEN = "168bb11f6d7edfd5ba58926e2e7a33a5"; ///   
+    public static final String AUTH_TOKEN = "159dc0326db658398f4df8ccf0c7e27c"; ///   
     public static final String TWILIO_NUMBER = "+15673131084";
  
     @Override
@@ -53,14 +53,22 @@ public class CommandeService implements CommandeInterface{
             st.executeUpdate();
             System.out.println("Commande Added successfully!");
             
-                      Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+                      /**Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
         // Remplacez le numéro de téléphone ci-dessous par le numéro de téléphone tunisien que vous voulez envoyer le SMS
        String phoneNumber = "+21629083510";
       
-      Message message = Message.creator(new PhoneNumber(phoneNumber),new PhoneNumber(TWILIO_NUMBER),"Commande ajouter").create();
-       // Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(TWILIO_NUMBER),"Felicitation! la conventient avec votre garage a été accepté.").create();
-        System.out.println(message.getSid());
+       //Message message = Message.creator(new PhoneNumber(phoneNumber),new PhoneNumber(TWILIO_NUMBER),"Commande ajouter").create();
+        Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber(TWILIO_NUMBER),"Objet : Confirmation de commande en cours\n" +
+"\n" +
+"Le"+c.getDate_commande()+
+"\n" +
+"Bonjour,"+c.getNom_prenom() +
+"\n" +
+"Nous avons bien reçu votre commande et nous la traitons actuellement. Nous sommes ravis de vous compter parmi nos clients fidèles !\n" +
+"\n" +
+"Nous souhaitons vous informer que votre commande est en cours de traitement et que vous recevrez une confirmation dès que celle-ci sera prête à être expédiée.").create();
+        System.out.println(message.getSid());**/
             
             
             
@@ -137,8 +145,8 @@ public class CommandeService implements CommandeInterface{
         
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String req = "UPDATE `commande` SET `date_commande`='"+c.getDate_commande()+"',`nom_prenom`='"+c.getNom_prenom()+"',`num`='"+c.getNum()+"',`mail`='"+c.getMail()+"' WHERE id_commande = "+c.getId_commande();
-            
+            String req = "UPDATE `commande` SET `nom_prenom`='"+c.getNom_prenom()+"',`num`='"+c.getNum()+"',`mail`='"+c.getMail()+"' WHERE id_commande = "+c.getId_commande();
+            //String req = "UPDATE `commande` SET `date_commande`='"+c.getDate_commande()+"',`nom_prenom`='"+c.getNom_prenom()+"',`num`='"+c.getNum()+"',`mail`='"+c.getMail()+"' WHERE id_commande = "+c.getId_commande();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("Commande updated successfully!");
@@ -175,6 +183,32 @@ public class CommandeService implements CommandeInterface{
         }
        return c;
     }
+     @Override
+    public Commande rechercherCommandebynom(String nom_prenom){
+        
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody      
+    Commande c = new Commande();
+        try {
+            String req="SELECT * FROM commande WHERE `nom_prenom`='"+nom_prenom+"'";
+            Statement ste = cnx.createStatement();
+            ResultSet res=ste.executeQuery(req);
+            while(res.next()){
+              LivraisonService se = new LivraisonService();
+              c.setId_commande(res.getInt(1));
+              c.setDate_commande(res.getDate(3));
+              c.setNom_prenom(res.getString(4));
+              c.setNum(res.getInt(5));
+              c.setMail(res.getString(6));
+              //Livraison l = se.rechercherLivraisonbyid(res.getInt(5));
+              //c.setId_livraison(l);
+              
+                  
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return c;
+    }
     
     @Override
     public void afficherCommande(Commande c){
@@ -192,5 +226,40 @@ public class CommandeService implements CommandeInterface{
     }
    
 
-   
+   @Override
+    public Commande readbyid(int id_commande){
+        
+        Commande c = new Commande();
+        try {
+            String req = "SELECT * FROM commande WHERE `id_commande` = '"+id_commande+"'";
+            Statement ste = cnx.createStatement();
+            ResultSet res=ste.executeQuery(req);
+            while(res.next()){
+                
+                c.setId_commande(res.getInt(1));
+                c.setNom_prenom(res.getString(4));
+                c.setNum(res.getInt(5));
+                c.setMail(res.getString(6));
+              
+              
+              
+            }
+             } catch (SQLException ex) {
+            Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return c;
     }
+    @Override
+     public Commande getcommande(Commande c){
+        c.getId_commande();
+        c.getNom_prenom();
+        c.getNum();
+        c.getMail();
+        c.getId_commande();
+        return c;
+    }
+     
+    }
+
+
+   

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,14 +45,9 @@ public class Livraison_ajouterController implements Initializable {
 
     private TextField status_l;
     
-     @FXML
-    private TextField label;
+    @FXML
+    private Label label;
      
-    @FXML
-    private Button retour3;
-    
-    @FXML
-    private Button ajouter_l;
     
     private DatePicker text_date_l;
 
@@ -99,6 +97,14 @@ public class Livraison_ajouterController implements Initializable {
     private ComboBox<String> combo3;
     
     private final ObservableList<String> company = FXCollections.observableArrayList("First Delivery","Fast Coursier", "Allo Coursier", "Tunisia Express");
+    @FXML
+    private Button ajouter_l;
+    
+    Commande c ;
+    @FXML
+    private Label id;
+    
+    
     
     
     /**
@@ -195,14 +201,20 @@ public class Livraison_ajouterController implements Initializable {
             }
         });
         combo3.setItems(company);
+          label10.setText("En cours");
        
 }
+    
+    void getcommande(Commande c){
+        
+    
+   id.setText(Integer.toString(c.getId_commande()));
+    }
 
        
     
     
 
-    @FXML
     private void retour3(ActionEvent event) throws IOException {
                 // Charger l'interface suivante à partir de son fichier FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("livraison_acceuil.fxml"));
@@ -218,28 +230,47 @@ public class Livraison_ajouterController implements Initializable {
     }
 
     @FXML
-    private void ajouter_l(ActionEvent event) {
+    private void ajouter_l(ActionEvent event) throws IOException {
+        
+                   
+     
        
        String selectedOption = (String) combo.getValue();
-        if (selectedOption.isEmpty()     ){
-             Alert alert = new Alert (Alert.AlertType.INFORMATION);
-       alert.setTitle("Livraison ");
-       alert.setHeaderText("ATTENTION !!");
-       alert.setContentText("veuillez remplir toutes les cases !!");
-       alert.show();
-        }
-        else{String selectedOptionn = (String) combo3.getValue();
-        if (selectedOption.isEmpty()     ){
-             Alert alert = new Alert (Alert.AlertType.INFORMATION);
-       alert.setTitle("Livraison ");
-       alert.setHeaderText("ATTENTION !!");
-       alert.setContentText("veuillez remplir toutes les cases !!");
-       alert.show();}
-     
-        
-        else{
+       String selectedOptionn = (String) combo3.getValue();
+       String selectedOptionnn = (String) combo2.getValue();
        
+       
+        Livraison l =new Livraison();
+       
+        if (selectedOption == null || selectedOption.isEmpty() || selectedOptionn == null || selectedOptionn.isEmpty() || selectedOptionnn == null || selectedOptionnn.isEmpty()){
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("livraison ");
+        alert.setHeaderText("ATTENTION !!");
+        alert.setContentText("Veuillez remplir toutes les cases !!");
+        alert.show();
+        }    
         
+        else if (label.getText().isEmpty() ) {
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("Commande ");
+        alert.setHeaderText("ATTENTION !!");
+        alert.setContentText("Veuillez calculer le frais de livraison !!");
+        alert.show();
+        }
+        else {
+       
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("afficheliv.fxml"));
+
+    // Create a new stage for the new view
+    Stage stage = new Stage();
+    stage.setScene(new Scene(loader.load()));
+
+    // Show the new stage and hide the current stage
+    stage.show();
+    Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+    currentStage.hide();
+    
+    
         LocalDate d1 = LocalDate.now();
         LocalDate d2= d1.plusDays(3);
         l.setDate_livraison(java.sql.Date.valueOf(d2));
@@ -247,39 +278,228 @@ public class Livraison_ajouterController implements Initializable {
         l.setLieu_livraison(selectedOption);
         l.setComp(selectedOptionn); 
         l.setVille(combo2.getValue());
+        
+        
         if (Statut(d1)){
         l.setStatus_livraison("livrée");
         
         }else{
         l.setStatus_livraison("en cours");
         }
+        
         l.setStatus_livraison(label10.getText());
-       
+        l.setFrais_livraison(Float.parseFloat(label.getText()));
+        l.getId_livraison();
+        Commande c1 = new Commande ();
+        
+        int ID = Integer.parseInt(id.getText());
+        c1.setId_commande(ID);
+        l.setId_commande(c1);
+        
            LivraisonService fs= new LivraisonService();
            fs.addLivraison(l);
+           
+           
+           
+           AffichelivController c = loader.getController();
+           c.getlivraison(fs.rechercherLivraisonbydate(l.getVille())); 
+           c.l=l;
+           
+         
+    
+           
     }
 }
-        }
-    
+        
+            
+
     @FXML
     private void calculerFraisLivraison() {
-        int frais1 = 7 ;
-        int frais2 = 10 ;
-        int frais3 = 15 ;
+List<String> regions = Arrays.asList("Ariana","Béja", "Ben Arous", "Bizerte", "Gabès", "Gafsa",
+             "Jendouba", "Kairouan", "Kasserine", "Kébili", "Kef", "Mahdia", "Manouba", "Médenine",
+             "Monastir", "Nabeul", "Sfax", "Sidi Bouzid", "Siliana", "Sousse", "Tataouine", "Tozeur", "Tunis", "Zaghouan");                
+     float frais_par_km_= 0.150f ;
+     float distariana = 29f;           
+     float distbeja = 119f;
+     float distbenarous = 6.3f; 
+     float distbizerte = 84f; 
+     float distgabes = 406f; 
+     float distgafsa = 336f; 
+     float distjendouba = 163f; 
+     float distkairouan = 153f; 
+     float distkassrine = 290f; 
+     float distkebeli = 501f; 
+     float distkef = 175f; 
+     float distmahdia = 201f; 
+     float distmanouba = 21f; 
+     float distmednine = 479f; 
+     float distmonastire = 161f; 
+     float distnabeul = 60f; 
+     float distsfax = 261f; 
+     float distsidibou = 260f; 
+     float distsiliana = 122f; 
+     float distsousse = 139f; 
+     float disttata = 529f; 
+     float disttozer = 428f; 
+     float disttunis = 17f; 
+     float distzagh = 47f; 
+                
+                
+            
         
-        if (combo.getValue().equals("Nord")) {
-            label.setText(Integer.toString(frais1));
-            l.setFrais_livraison(frais1);
-        } else if (combo.getValue().equals("Milieu")) {
-            label.setText(Integer.toString(frais2));
-            l.setFrais_livraison(frais2);
-        } else if (combo.getValue().equals("Sud")) {
-            label.setText(Integer.toString(frais3));
-            l.setFrais_livraison(frais3);
-        } 
+        if (combo.getValue().equals("Ariana")) {
+            float frais =distariana*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);
+
+      }  
+        else if (combo.getValue().equals("Béja")) {
+            float frais =distbeja*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+      
+        else if (combo.getValue().equals("Ben Arous")) {
+            float frais =distbenarous*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
         
+        else if (combo.getValue().equals("Bizerte")) {
+            float frais =distbizerte*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
         
+        else if (combo.getValue().equals("Gabès")) {
+            float frais =distgabes*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Gafsa")) {
+            float frais =distgafsa*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Jendouba")) {
+            float frais =distjendouba*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Kairouan")) {
+            float frais =distkairouan*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Kasserine")) {
+            float frais =distkassrine*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Kébili")) {
+            float frais =distkebeli*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Kef")) {
+            float frais =distkef*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Mahdia")) {
+            float frais =distmahdia*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Manouba")) {
+            float frais =distmanouba*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Médenine")) {
+            float frais =distmednine*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Béja")) {
+            float frais =distbeja*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+            
+        else if (combo.getValue().equals("Monastir")) {
+            float frais =distmonastire*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Nabeul")) {
+            float frais =distnabeul*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Sfax")) {
+            float frais =distsfax*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Sidi Bouzid")) {
+            float frais =distsidibou*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Siliana")) {
+            float frais =distsiliana*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Sousse")) {
+            float frais =distsousse*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Tataouine")) {
+            float frais =disttata*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Tozeur")) {
+            float frais =disttozer*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Tunis")) {
+            float frais =disttunis*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+        
+        else if (combo.getValue().equals("Zaghouan")) {
+            float frais =distzagh*frais_par_km_;
+            label.setText(Double.toString(frais));
+            //l.setFrais_livraison(frais);
+            l.setFrais_livraison(frais);}
+            
     }
+    
     
     public boolean Statut(LocalDate d) {
         LocalDate today1 = LocalDate.now();
@@ -294,9 +514,8 @@ public class Livraison_ajouterController implements Initializable {
         
         
     }
+
 }
-
-
 
 
 

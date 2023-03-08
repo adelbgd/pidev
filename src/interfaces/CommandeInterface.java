@@ -27,6 +27,8 @@ public interface CommandeInterface {
     public void updateCommande(Commande C);
     public  Commande rechercherCommandebyid(int id_commande);
     public void afficherCommande(Commande c);
-    
+    public Commande readbyid(int id);
+    public Commande getcommande(Commande c);
+    public Commande rechercherCommandebynom(String nom_prenom);
     
 }

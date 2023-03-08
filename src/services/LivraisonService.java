@@ -27,12 +27,22 @@ public class LivraisonService implements LivraisonInterface{
     //var
     Connection cnx = MyConnection.getInstance().getCnx();
 
- 
-    @Override
+ @Override
+    public void addLivraison(Livraison t) {
+            try {
+                String req = "INSERT INTO `livraison`(`date_livraison`, `region`, `ville`, `compagnie`, `status_livraison`, `frais_livraison`, `id_commande`) VALUES ('"+ t.getDate_livraison()+"','"+t.getLieu_livraison()+"','"+t.getVille()+"','"+t.getComp()+"','"+t.getStatus_livraison()+"','"+t.getFrais_livraison()+"','"+t.getId_commande().getId_commande()+"')";
+                Statement st = cnx.createStatement();
+                st.executeUpdate(req);
+                System.out.println("Livraison ajouter avec succes");
+            } catch (SQLException ex) {
+                Logger.getLogger(LivraisonService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    /**@Override
     public void addLivraison(Livraison l) {
         try {
 
-            String req = "INSERT INTO `livraison`(`date_livraison`, `region`, `ville`, `compagnie`, `status_livraison`, `frais_livraison`) VALUES(?,?,?,?,?,?)";
+            String req = "INSERT INTO `livraison`(`date_livraison`, `region`, `ville`, `compagnie`, `status_livraison`, `frais_livraison`, `id_commande`) VALUES(?,?,?,?,?,?,?)";
             //Statement st = cnx.Statement();
             PreparedStatement st = cnx.prepareStatement(req);
             st.setDate(1, new java.sql.Date(l.getDate_livraison().getTime()));
@@ -40,7 +50,9 @@ public class LivraisonService implements LivraisonInterface{
             st.setString(3, l.getVille());
             st.setString(4, l.getComp());
             st.setString(5, l.getStatus_livraison());
-            st.setInt(6, l.getFrais_livraison());
+            st.setFloat(6, l.getFrais_livraison());
+            //st.setInt(7, l.getId_commande().getId_commande());
+            
 
             st.executeUpdate();
             System.out.println("Livraison Added successfully!");
@@ -48,10 +60,11 @@ public class LivraisonService implements LivraisonInterface{
             ex.printStackTrace();
         }
     }
-    
+    **/
     @Override
     public List<Livraison> fetchLivraisons() {
         List<Livraison> Livraisons = new ArrayList<>();
+        CommandeService ls = new CommandeService();
         try {
             
             String req = "SELECT * FROM livraison";
@@ -65,8 +78,9 @@ public class LivraisonService implements LivraisonInterface{
                 l.setVille(rs.getString("ville"));
                 l.setComp(rs.getString("compagnie"));
                 l.setStatus_livraison(rs.getString("status_livraison"));
-                l.setFrais_livraison(rs.getInt("frais_livraison"));
-                
+                //l.setFrais_livraison(rs.getFloat("frais_livraison"));
+                l.setFrais_livraison(rs.getFloat("frais_livraison"));
+                l.setId_commande(ls.readbyid(rs.getInt(8)));
                 
                 
                 Livraisons.add(l);
@@ -80,7 +94,7 @@ public class LivraisonService implements LivraisonInterface{
     }
     
     
-    @Override
+   /* @Override
     public void affecterLivraison(Livraison l, Commande c) {
         try {
             String req ="UPDATE `livraison` SET `commande`= ? WHERE id_livraison = ?";
@@ -93,7 +107,7 @@ public class LivraisonService implements LivraisonInterface{
             ex.printStackTrace();
         }
         
-    }
+    }*/
     
     @Override
     public void deleteLivraison(int id_livraison){
@@ -115,7 +129,7 @@ public class LivraisonService implements LivraisonInterface{
         
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String req = "UPDATE livraison SET `date_livraison`='"+l.getDate_livraison()+"',`region`='"+l.getLieu_livraison()+"',`ville`='"+l.getVille()+"',`compagnie`='"+l.getComp()+"',`status_livraison`='"+l.getStatus_livraison()+"',`frais_livraison`='"+l.getFrais_livraison()+"' WHERE id_livraison = "+l.getId_livraison();
+            String req = "UPDATE livraison SET `date_livraison`='"+l.getDate_livraison()+"',`region`='"+l.getLieu_livraison()+"',`ville`='"+l.getVille()+"',`compagnie`='"+l.getComp()+"',`status_livraison`='"+l.getStatus_livraison()+"',`frais_livraison`='"+l.getFrais_livraison()+"',`id_commande`='"+l.getId_commande().getId_commande()+"' WHERE id_livraison = "+l.getId_livraison();
             Statement st = cnx.createStatement();
             st.executeUpdate(req);
             System.out.println("livraison updated successfully!");
@@ -128,7 +142,7 @@ public class LivraisonService implements LivraisonInterface{
    
     
 
-    @Override
+   /* @Override
     public Livraison rechercherLivraisonbyid(int id_livraison){
              //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody      
     Livraison l = new Livraison();
@@ -137,13 +151,12 @@ public class LivraisonService implements LivraisonInterface{
             Statement ste = cnx.createStatement();
             ResultSet res=ste.executeQuery(req);
             while(res.next()){
-               
+              
               l.setId_livraison(res.getInt(1));
               l.setDate_livraison(res.getDate(2));
               l.setLieu_livraison(res.getString(3));
               l.setStatus_livraison(res.getString(4));
-           
-              l.setFrais_livraison(res.getInt(5));
+              l.setFrais_livraison(res.getFloat(5));
               
                   
             }
@@ -151,7 +164,66 @@ public class LivraisonService implements LivraisonInterface{
             Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
         }
        return l;
+    }*/
+    
+      @Override
+    public Livraison rechercherLivraisonbydate(String ville){
+             //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody      
+    Livraison l = new Livraison();
+        try {
+            String req="SELECT * FROM livraison WHERE `ville`='"+ville+"'";
+            Statement ste = cnx.createStatement();
+            ResultSet res=ste.executeQuery(req);
+            while(res.next()){
+               CommandeService cs = new CommandeService();
+              l.setId_livraison(res.getInt(1));
+              l.setDate_livraison(res.getDate(2));
+              l.setLieu_livraison(res.getString(3));
+              l.setVille(res.getString(4));
+              l.setComp(res.getString(5));
+              l.setStatus_livraison(res.getString(6));
+              l.setFrais_livraison(res.getFloat(7));
+              Commande c = cs.readbyid(res.getInt(8));
+              l.setId_commande(c);
+                  
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return l;
     }
+    
+    
+      @Override
+    public Livraison readbyid(int id_livraison){
+        
+        Livraison l = new Livraison();
+        try {
+            String req = "SELECT * FROM livraison WHERE `id_livraison` = '"+id_livraison+"'";
+            Statement ste = cnx.createStatement();
+            ResultSet res=ste.executeQuery(req);
+            while(res.next()){
+                CommandeService cs = new CommandeService();
+                l.setId_livraison(res.getInt(1));
+                l.setLieu_livraison(res.getString(3));
+                l.setVille(res.getString(4));
+                l.setComp(res.getString(5));
+                l.setStatus_livraison(res.getString(6));
+                l.setFrais_livraison(res.getFloat(7));
+                Commande c = cs.readbyid(res.getInt(8));
+                l.setId_commande(c);
+              
+              
+            }
+             } catch (SQLException ex) {
+            Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return l;
+    }
+    
+    
+    
+    
     
     @Override
     public void afficherLivraison(Livraison l){
@@ -168,7 +240,27 @@ public class LivraisonService implements LivraisonInterface{
         
     }
    
+    @Override
+     public Livraison getlivraison(Livraison l){
+        l.getId_livraison();
+        l.getLieu_livraison();
+        l.getVille();
+        l.getComp();
+        l.getStatus_livraison();
+        l.getFrais_livraison();
+        return l;
+    }
 
+    @Override
+    public void affecterLivraison(Livraison l, Commande c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Livraison rechercherLivraisonbyid(int id_livraison) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     
    
     
 }

@@ -16,7 +16,7 @@ import models.Livraison;
  */
 public interface LivraisonInterface {
      //add
-    public void addLivraison(Livraison l);
+    public void addLivraison(Livraison t);
     
     //list : select
     public List<Livraison> fetchLivraisons();
@@ -27,5 +27,8 @@ public interface LivraisonInterface {
     public void updateLivraison(Livraison c);
     public Livraison rechercherLivraisonbyid(int id_livraison);
     public void afficherLivraison(Livraison l);
+    public Livraison getlivraison(Livraison l);
+    public Livraison rechercherLivraisonbydate(String ville);
+    public Livraison readbyid(int id_livraison);
     
 }
