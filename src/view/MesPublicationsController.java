@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -46,6 +48,8 @@ public class MesPublicationsController implements Initializable {
     Publicationservice ps = new Publicationservice();
     @FXML
     private ImageView image;
+    @FXML
+    private ListView<?> com_pub;
     
     /**
      * Initializes the controller class.
@@ -60,7 +64,7 @@ public class MesPublicationsController implements Initializable {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                   setText(item.getTitre_publication()+ " - " + item.getContenu_publication()+ " - " + item.getDate_publication());
+                   setText(item.getTitre_publication()+ " \n " + item.getContenu_publication()+  "\n" + item.getDate_publication() + "\n" );
                 }
             }
         });
@@ -71,6 +75,8 @@ public class MesPublicationsController implements Initializable {
        
         Image img = new Image("/view/Swappywhite.png");
         image.setImage(img);
+        
+        
 
     }  
         // TODO
@@ -85,6 +91,7 @@ public class MesPublicationsController implements Initializable {
         stage.show();
         Stage currentStage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         currentStage.hide();
+        
     }
 
     @FXML

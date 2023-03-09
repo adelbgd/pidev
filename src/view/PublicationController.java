@@ -107,6 +107,7 @@ public class PublicationController implements Initializable {
                 idUtilisateurTextField.clear();
             }
         }
+        
     }
 
     private ObservableList<Publication> publicationList;
@@ -167,6 +168,7 @@ public class PublicationController implements Initializable {
         colDatePublication.setCellValueFactory(new PropertyValueFactory<>("date_publication"));
        Image img = new Image("/view/Swappywhite.png");
         image.setImage(img);
+        
 
 
 

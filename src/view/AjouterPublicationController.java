@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -69,6 +70,11 @@ public class AjouterPublicationController implements Initializable {
         p.setTitre_publication(titre_pub.getText());
         p.setContenu_publication(contenu_pub.getText());
         ps.ajouterPublication(p);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("La publication a été ajouté avec succès");
+        alert.showAndWait();
         
     }
 }

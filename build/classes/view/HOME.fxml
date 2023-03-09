@@ -6,21 +6,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="357.0" prefWidth="567.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HOMEController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="660.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HOMEController">
    <children>
-      <Button fx:id="pubButton" layoutX="334.0" layoutY="231.0" mnemonicParsing="false" onAction="#pub" prefHeight="38.0" prefWidth="198.0" style="-fx-background-color: black;" text="Gestion publication" textFill="WHITE">
+      <AnchorPane layoutX="-17.0" prefHeight="430.0" prefWidth="346.0" style="-fx-background-color: black;">
+         <children>
+            <Button fx:id="commentaireButton" layoutX="99.0" layoutY="273.0" mnemonicParsing="false" onAction="#comment" prefHeight="38.0" prefWidth="198.0" style="-fx-background-color: white;" text="Gestion commentaire">
+               <font>
+                  <Font name="Bell MT" size="19.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <Button fx:id="pubButton" layoutX="402.0" layoutY="269.0" mnemonicParsing="false" onAction="#pub" prefHeight="38.0" prefWidth="198.0" style="-fx-background-color: black;" text="Gestion publication" textFill="WHITE">
          <font>
-            <Font name="Corbel" size="19.0" />
+            <Font name="Bell MT" size="20.0" />
          </font></Button>
-      <ImageView fx:id="image" fitHeight="182.0" fitWidth="248.0" layoutX="187.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image" fitHeight="182.0" fitWidth="248.0" layoutX="232.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Swappyblack.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutY="-8.0" opacity="0.5" prefHeight="368.0" prefWidth="280.0" style="-fx-background-color: black;" />
-      <Button fx:id="commentaireButton" layoutX="44.0" layoutY="231.0" mnemonicParsing="false" onAction="#comment" prefHeight="38.0" prefWidth="198.0" style="-fx-background-color: white;" text="Gestion commentaire">
-         <font>
-            <Font name="Corbel" size="19.0" />
-         </font></Button>
+      <ImageView fitHeight="162.0" fitWidth="182.0" layoutX="245.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Swappywhite.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

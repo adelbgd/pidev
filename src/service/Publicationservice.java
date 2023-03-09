@@ -27,8 +27,8 @@ public class Publicationservice {
 
     public void ajouterPublication(Publication p) {
         try {
-            String requete2 = "INSERT INTO publication (id_user,titre_publication,contenu_publication,date_publication)"
-                    + "VALUES (?,?,?,?)";
+            String requete2 = "INSERT INTO publication (id_user,titre_publication,contenu_publication,date_publication,nb_signals)"
+                    + "VALUES (?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(requete2);
             pst.setInt(1, p.getId_user());
             pst.setString(2, p.getTitre_publication());
@@ -41,11 +41,11 @@ public class Publicationservice {
         }
     }
 
-    public void supprimerPublication (int  id_publication) {
+    public void supprimerPublication (int  id_pub) {
         try {
-            String requete = "DELETE FROM publication WHERE id_publication =?";
+            String requete = "DELETE FROM publication WHERE id_pub =?";
             PreparedStatement pst = con.prepareStatement(requete);
-            pst.setInt(1, id_publication);
+            pst.setInt(1, id_pub);
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -55,7 +55,7 @@ public class Publicationservice {
 
     public void modifierTitrePublication(int id_publication, String titre_publication) {
         try {
-            String requete = "UPDATE publication SET titre_discussion = ?  WHERE id_publication= ?";
+            String requete = "UPDATE publication SET titre_discussion = ?  WHERE id_pub= ?";
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setString(1, titre_publication);
             pst.setInt(2, id_publication);
@@ -65,10 +65,24 @@ public class Publicationservice {
             System.err.println(ex.getMessage());
         }
     }
+    
+     public void modifierTitrePublication(int nb , int id_publication) {
+        try {
+            String requete = "UPDATE publication SET nb_signals = ?  WHERE id_pub= ?";
+            PreparedStatement pst = con.prepareStatement(requete);
+            pst.setInt(1, nb);
+            pst.setInt(2, id_publication);
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    
 
     public void modifierContenuPublication(int id_publication, String contenu_publication) {
         try {
-            String requete = "UPDATE publication SET contenu_publication = ?  WHERE id_publication= ?";
+            String requete = "UPDATE publication SET contenu_publication = ?  WHERE id_pub= ?";
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setString(1, contenu_publication);
             pst.setInt(2, id_publication);
@@ -80,7 +94,7 @@ public class Publicationservice {
     }
         public void modifierDatePublication(int id_publication, Date date_publication) {
         try {
-            String requete = "UPDATE publication SET date_discussion = ?  WHERE id_publication= ?";
+            String requete = "UPDATE publication SET date_discussion = ?  WHERE id_pub= ?";
             PreparedStatement pst = con.prepareStatement(requete);
             pst.setDate(1, date_publication);
             pst.setInt(2, id_publication);
@@ -135,6 +149,29 @@ public class Publicationservice {
         return publicationUtilisateur;
 
     }
+    
+    public Publication rechercherPublicationParId(int id_pub) {
+    Publication publication = null;
+    try {
+        String requete = "SELECT * FROM publication WHERE id_pub = ?";
+        PreparedStatement pst = con.prepareStatement(requete);
+        pst.setInt(1, id_pub);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            publication = new Publication();
+            publication.setId_pub(rs.getInt(1));
+            publication.setId_user(rs.getInt(2));
+            publication.setTitre_publication(rs.getString(3));
+            publication.setContenu_publication(rs.getString(4));
+            publication.setDate_publication(rs.getDate(5));
+            publication.setNb_signals(rs.getInt(6)); // si la colonne "nb_signalements" est ajoutée à la table
+        }
+    } catch (SQLException ex) {
+        System.err.println(ex.getMessage());
+    }
+    return publication;
+}
+
 
     public List<Publication> rechercherPublication(String nom, String prenom) {
         List<Publication> publicationUtilisateur = new ArrayList<>();

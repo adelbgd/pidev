@@ -10,24 +10,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="781.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CommentaireController">
+<AnchorPane id="AnchorPane" prefHeight="461.0" prefWidth="645.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CommentaireController">
    <children>
-      <Button fx:id="rechercheCom" layoutX="313.0" layoutY="247.0" mnemonicParsing="false" onAction="#afficherCommentairesUtilisateur" text="rechercher les commentaires de cet utilisateur" />
-      <TextField fx:id="idUtilisateurTextField" layoutX="313.0" layoutY="197.0" prefHeight="26.0" prefWidth="166.0" promptText="Entrer l'ID d'utilisateur..." />
+      <Button fx:id="rechercheCom" layoutX="330.0" layoutY="148.0" mnemonicParsing="false" onAction="#afficherCommentairesUtilisateur" prefHeight="22.0" prefWidth="150.0" style="-fx-background-color: black;" text="Rechercher les commentaires " textFill="#faf6f6">
+         <font>
+            <Font name="Bell MT" size="11.0" />
+         </font></Button>
+      <TextField fx:id="idUtilisateurTextField" layoutX="321.0" layoutY="103.0" prefHeight="26.0" prefWidth="277.0" promptText="Entrer le nom de l'utilisateur..." />
       <Text layoutX="418.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Listes des commentaires">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="idPublicationTextField" layoutX="681.0" layoutY="198.0" promptText="Entrer l'ID de la publication..." />
-      <Button fx:id="afficherCommentPub" layoutX="608.0" layoutY="247.0" mnemonicParsing="false" onAction="#afficherCommentairespublication" text="rechercher les commentaires de cette publication" />
+      <TextField fx:id="idPublicationTextField" layoutX="321.0" layoutY="197.0" prefHeight="26.0" prefWidth="278.0" promptText="Entrer le titre de la publication..." />
+      <Button fx:id="afficherCommentPub" layoutX="330.0" layoutY="249.0" mnemonicParsing="false" onAction="#afficherCommentairespublication" prefHeight="22.0" prefWidth="150.0" style="-fx-background-color: black;" text="Rechercher les commentaires " textFill="#faf6f6">
+         <font>
+            <Font name="Bell MT" size="11.0" />
+         </font></Button>
       <AnchorPane layoutX="1.0" prefHeight="818.0" prefWidth="294.0" style="-fx-background-color: black;" />
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Swappywhite.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableCommentaire" layoutX="295.0" layoutY="397.0" prefHeight="411.0" prefWidth="576.0">
+      <TableView fx:id="tableCommentaire" layoutX="299.0" layoutY="449.0" prefHeight="363.0" prefWidth="532.0">
         <columns>
           <TableColumn fx:id="colID_Com" prefWidth="75.0" text="id_com" />
           <TableColumn fx:id="colID_Pub" prefWidth="75.0" text="id_pub" />
@@ -38,7 +44,10 @@
             <TableColumn fx:id="colnb_reaction" prefWidth="75.0" text="nb_reaction" />
         </columns>
       </TableView>
-      <Button fx:id="afficherCommentPubUtilisateur" layoutX="423.0" layoutY="302.0" mnemonicParsing="false" onAction="#afficherCommentairePublicationUtilisateur" text="rechercher les commentaires de cet utilisateur sur cette publication" />
-      <Button fx:id="home" layoutX="1.0" layoutY="709.0" mnemonicParsing="false" onAction="#home" opacity="0.5" prefHeight="113.0" prefWidth="294.0" style="-fx-background-color: black;" text="HOME" textFill="WHITE" />
+      <Button fx:id="afficherCommentPubUtilisateur" layoutX="460.0" layoutY="400.0" mnemonicParsing="false" onAction="#afficherCommentairePublicationUtilisateur" prefHeight="26.0" prefWidth="357.0" style="-fx-background-color: black;" text="Rechercher les commentaires de cet utilisateur sur cette publication" textFill="#faf6f6">
+         <font>
+            <Font name="Bell MT" size="12.0" />
+         </font></Button>
+      <Button fx:id="home" layoutX="-7.0" layoutY="709.0" mnemonicParsing="false" onAction="#home" opacity="0.5" prefHeight="117.0" prefWidth="302.0" style="-fx-background-color: black;" text="HOME" textFill="WHITE" />
    </children>
 </AnchorPane>

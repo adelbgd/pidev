@@ -7,13 +7,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MesPublicationsController">
+<AnchorPane id="AnchorPane" prefHeight="430.4" prefWidth="660.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MesPublicationsController">
    <children>
-      <Button fx:id="ajout_c" layoutX="229.0" layoutY="48.0" mnemonicParsing="false" onAction="#ajout_c" prefHeight="0.0" prefWidth="141.0" text="Ajouter une publication" />
-      <Button fx:id="modifier_c" layoutX="269.0" layoutY="141.0" mnemonicParsing="false" onAction="#modifier_c" text="Modifier" />
-      <Button fx:id="supprimer_c" layoutX="264.0" layoutY="215.0" mnemonicParsing="false" onAction="#supprimer_c" text="Supprimer" />
-      <ListView fx:id="list_pub" layoutX="386.0" layoutY="16.0" prefHeight="322.0" prefWidth="200.0" />
-      <AnchorPane prefHeight="400.0" prefWidth="226.0" style="-fx-background-color: black;">
+      <Button fx:id="ajout_c" layoutX="255.0" layoutY="275.0" mnemonicParsing="false" onAction="#ajout_c" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: black;" text="Ajouter une publication" textFill="WHITE">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Button>
+      <Button fx:id="modifier_c" layoutX="550.0" layoutY="350.0" mnemonicParsing="false" onAction="#modifier_c" prefHeight="26.0" prefWidth="71.0" style="-fx-background-color: black;" text="Modifier" textFill="#f7f0f0">
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font></Button>
+      <Button fx:id="supprimer_c" layoutX="445.0" layoutY="351.0" mnemonicParsing="false" onAction="#supprimer_c" style="-fx-background-color: black;" text="Supprimer" textFill="#f4f1f1">
+         <font>
+            <Font name="Bell MT" size="14.0" />
+         </font></Button>
+      <ListView fx:id="list_pub" layoutX="434.0" layoutY="22.0" prefHeight="322.0" prefWidth="200.0" />
+      <AnchorPane prefHeight="430.0" prefWidth="226.0" style="-fx-background-color: black;">
          <children>
             <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,9 +31,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="retour" layoutY="323.0" mnemonicParsing="false" onAction="#retour" opacity="0.5" prefHeight="80.0" prefWidth="226.0" style="-fx-background-color: black;" text="retour" textFill="WHITE">
+      <Button fx:id="retour" layoutY="323.0" mnemonicParsing="false" onAction="#retour" prefHeight="110.0" prefWidth="226.0" style="-fx-background-color: black;" text="Retour" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font name="Bell MT" size="20.0" />
          </font></Button>
    </children>
 </AnchorPane>

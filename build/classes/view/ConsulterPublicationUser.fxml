@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ConsulterPublicationUserController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ConsulterPublicationUserController">
    <children>
-      <ListView fx:id="list_pub" layoutX="335.0" layoutY="10.0" prefHeight="268.0" prefWidth="250.0" />
-      <TextField fx:id="contenu_c" layoutX="421.0" layoutY="316.0" prefHeight="70.0" prefWidth="163.0" />
-      <Label layoutX="452.0" layoutY="289.0" text="commentaire" />
-      <Button fx:id="commenter" layoutX="319.0" layoutY="338.0" mnemonicParsing="false" onAction="#commenter" text="Commenter" />
-      <AnchorPane layoutX="-14.0" prefHeight="402.0" prefWidth="230.0" style="-fx-background-color: black;">
+      <ListView fx:id="list_pub" layoutX="271.0" layoutY="92.0" onMouseClicked="#ListViewClick" prefHeight="268.0" prefWidth="349.0" />
+      <Button fx:id="commenter" layoutX="301.0" layoutY="384.0" mnemonicParsing="false" onAction="#commenter" prefHeight="46.0" prefWidth="81.0" style="-fx-background-color: black;" text="Commenter" textFill="#f4eded">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Button>
+      <AnchorPane layoutX="-14.0" prefHeight="452.0" prefWidth="210.0" style="-fx-background-color: black;">
          <children>
-            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="38.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Swappywhite.png" />
                </image>
             </ImageView>
-            <Button fx:id="retour" layoutX="15.0" layoutY="327.0" mnemonicParsing="false" onAction="#retour" prefHeight="70.0" prefWidth="219.0" style="-fx-background-color: black;" text="retour" textFill="WHITE" />
+            <Button fx:id="retour" layoutX="14.0" layoutY="341.0" mnemonicParsing="false" onAction="#retour" prefHeight="110.0" prefWidth="219.0" style="-fx-background-color: black;" text="Retour" textFill="WHITE">
+               <font>
+                  <Font name="Bell MT" size="22.0" />
+               </font></Button>
          </children>
       </AnchorPane>
+      <TextField fx:id="contenu_c" layoutX="403.0" layoutY="369.0" prefHeight="66.0" prefWidth="219.0" />
+      <DatePicker fx:id="dateDebutPicker" layoutX="236.0" layoutY="54.0" promptText="date debut" />
+      <DatePicker fx:id="dateFinPicker" layoutX="458.0" layoutY="54.0" promptText="date fin " />
+      <Button fx:id="filtrer_b" layoutX="382.0" layoutY="14.0" mnemonicParsing="false" onAction="#filtrer_p" style="-fx-background-color: black;" text="Filter par date" textFill="#faf8f8">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Button>
+      <Button fx:id="signaler" layoutX="228.0" layoutY="384.0" mnemonicParsing="false" onAction="#signaler" prefHeight="46.0" prefWidth="64.0" style="-fx-background-color: black;" text="Signaler" textFill="#faf4f4">
+         <font>
+            <Font name="Bell MT" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

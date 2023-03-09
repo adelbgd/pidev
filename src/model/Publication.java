@@ -13,6 +13,7 @@ public class Publication {
     private String titre_publication;
     private String contenu_publication;
     private Date date_publication;
+    private int nb_signals ;
 
     public Publication() {
     }
@@ -70,6 +71,23 @@ public class Publication {
 
     public void setDate_publication(Date date_publication) {
         this.date_publication = date_publication;
+    }
+
+    public Publication(int id_pub, int id_user, String titre_publication, String contenu_publication, Date date_publication, int nb_signals) {
+        this.id_pub = id_pub;
+        this.id_user = id_user;
+        this.titre_publication = titre_publication;
+        this.contenu_publication = contenu_publication;
+        this.date_publication = date_publication;
+        this.nb_signals = nb_signals;
+    }
+
+    public int getNb_signals() {
+        return nb_signals;
+    }
+
+    public void setNb_signals(int nb_signals) {
+        this.nb_signals = nb_signals;
     }
 
 }
