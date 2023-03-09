@@ -3,23 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/AjouterPublicationController.java</file>
+            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/util/MyConnection.java</file>
+            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/Publication.fxml</file>
             <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/model/Publication.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/UserMain.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/ConsulterPublicationUserController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/MesPublicationsController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/NewFXMain.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/UserinterfaceController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/HOMEController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/ModifierPublicationController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/CommentaireController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/PublicationController.java</file>
             <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/service/Publicationservice.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/interfaces/commentaireinterface.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/main/main.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/service/commentaireservice.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/AjouterCommentController.java</file>
-            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/model/commentaire.java</file>
+            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/ConsulterPublicationUserController.java</file>
+            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/AfficherPublication.fxml</file>
+            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/UserinterfaceController.java</file>
+            <file>file:/C:/Users/azizl/OneDrive/Documents/NetBeansProjects/ProjetPI/src/view/HOME.fxml</file>
         </group>
     </open-files>
 </project-private>

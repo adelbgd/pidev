@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="563.0" prefWidth="799.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Commande_ajouterController">
+   <children>
+      <Button fx:id="ajouter_c" layoutX="634.0" layoutY="520.0" mnemonicParsing="false" onAction="#ajouter_c" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: BLACK;" text="Continuer" textFill="WHITE" />
+      <HBox prefHeight="86.0" prefWidth="310.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/325464498_2384676458375469_7718240765571886875_n.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Button fx:id="retour1" layoutX="14.0" layoutY="522.0" mnemonicParsing="false" onAction="#retour1" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: black;" text="Retour" textFill="WHITE" />
+      <HBox layoutX="309.0" prefHeight="86.0" prefWidth="490.0" style="-fx-background-color: black;">
+         <children>
+            <Label prefHeight="86.0" prefWidth="385.0" text="Passer la commande " textFill="WHITE">
+               <font>
+                  <Font name="Calibri Italic" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="199.0" layoutY="86.0" prefHeight="476.0" prefWidth="229.0" style="-fx-background-color: e4e2e2;">
+         <children>
+            <Label prefHeight="83.0" prefWidth="320.0" text="1.Remplir vos coordonnées" textFill="#dc6e6e">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="74.0" prefWidth="118.0" text="Nom Prenom">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="131.0" prefWidth="118.0" text="Telephone">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="54.0" prefWidth="154.0" text="Adresse Mail">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="423.0" layoutY="87.0" prefHeight="476.0" prefWidth="182.0" style="-fx-background-color: e4e2e2;" />
+      <TextField fx:id="client_c" layoutX="400.0" layoutY="191.0" prefHeight="40.0" prefWidth="182.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="produit_c" layoutX="399.0" layoutY="292.0" prefHeight="36.0" prefWidth="182.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="mail" layoutX="399.0" layoutY="383.0" prefHeight="40.0" prefWidth="182.0" />
+   </children>
+</AnchorPane>
