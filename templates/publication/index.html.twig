@@ -1,0 +1,120 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Publication index{% endblock %}
+
+{% block body %}
+    <h1>Publication index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_user</th>
+                <th>Titre_pub</th>
+                <th>Contenu_pub</th>
+                <th>Date_pub</th>
+                <th>Nb_signals</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.idUser }}</td>
+                <td>{{ publication.titrePub }}</td>
+                <td>{{ publication.contenuPub }}</td>
+                <td>{{ publication.datePub ? publication.datePub|date('Y-m-d') : '' }}</td>
+                <td>{{ publication.nbSignals }}</td>
+                <td>
+                    <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publication_new') }}">Create new</a>
+{% endblock %}
+ #}
+ {% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<div class="row align-items-center justify-content-between">
+    <div class="col-lg-12">
+        <div class="best_product_slider owl-carousel">
+            {% for publication in publications %}
+            <div class="single_product_item">
+                <div class="single_product_text">
+                    <h4>{{ publication.titrePub }}</h4>
+                    {% if publication.id == 2 %}
+                        <img src="{{asset('img/hoodie.png')}}" alt="hoodie">
+                    {% else %}
+                        <img src="{{asset('img/veste.png')}}" alt="veste">
+                    {% endif %}
+                    <p>{{ publication.contenuPub }}</p>
+                </div>
+                <div class="single_product_actions">
+                    <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% if publications|length == 0 %}
+        <div class="single_product_item">
+            <p class="no_records">No records found</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+{#     <!--
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_user</th>
+                <th>Titre_pub</th>
+                <th>Contenu_pub</th>
+                <th>Date_pub</th>
+                <th>Nb_signals</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.idUser }}</td>
+                <td>{{ publication.titrePub }}</td>
+                <td>{{ publication.contenuPub }}</td>
+                <td>{{ publication.datePub ? publication.datePub|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ publication.nbSignals }}</td>
+                <td>
+                    <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  -->
+#}
+    <a href="{{ path('app_publication_new') }}">Create new</a>
+{% endblock %} 

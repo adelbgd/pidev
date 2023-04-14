@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <h1>Publication</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{asset('img/hoodie.png')}}" alt="Hoodie Image">
+    </div>
+    <div class="col-md-6">
+    
+    
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publication.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_user</th>
+                <td>{{ publication.idUser }}</td>
+            </tr>
+            <tr>
+                <th>Titre_pub</th>
+                <td>{{ publication.titrePub }}</td>
+            </tr>
+            <tr>
+                <th>Contenu_pub</th>
+                <td>{{ publication.contenuPub }}</td>
+            </tr>
+            <tr>
+                <th>Date_pub</th>
+                <td>{{ publication.datePub ? publication.datePub|date('Y-m-d H:i:s T') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nb_signals</th>
+                <td>{{ publication.nbSignals }}</td>
+            </tr>
+        </tbody>
+    </table>
+      </div>
+</div>
+
+
+    <div class="comments-area">
+   <h4>Comments</h4>
+   <div class="comment-list">
+  {% for c in comment %}
+    <div class="single-comment justify-content-between d-flex">
+         <div class="user justify-content-between d-flex">
+            <div class="thumb">
+               <img src="{{asset('img/1.png')}}" alt="Profile Picture">
+            </div>
+            <div class="desc">
+               <p class="comment">
+                 {{ c.getSujetCom() }}
+               </p>
+               <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">
+                     <h5>
+                        <a href="#">{{ c.getUsername() }} </a>
+                     </h5>
+                     <p class="date"> 17:45 9/12/2022 </p>
+       
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+      </div>
+   </div>
+</div>
+
+{# <div class="comment-form">
+   <h4>Leave a Comment</h4>
+   <form class="form-contact comment_form" action="{{path('app_commentaire_new',{'id':publication.id}) }}"  id="commentForm">
+      <div class="row">
+         <div class="col-12">
+            <div class="card-body">
+                    <h4 class="card-title">{{ comment.username }}</h4>
+                    <p class="card-text">{{ comment.sujet_com  }}</p>
+                </div>
+      </div> #}
+  {# <div class="comment-section">
+    {% if comments|length > 0 %}
+        {% for comment in comments %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">{{ comment.nickname }}</h4>
+                    <p class="card-text">{{ comment.descriptionCommentaire }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Il n'y a pas encore de commentaires pour cet article.
+        </div>
+    {% endif %}
+</div>
+ #}
+<a href="{{ path('app_commentaire_new', {'id': publication.id}) }}" >new</a>
+   
+
+
+
+    <a href="{{ path('app_publication_index') }}">back to list</a>
+
+    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+
+    {{ include('publication/_delete_form.html.twig') }}
+{% endblock %}
