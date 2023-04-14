@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+{% form_theme f 'bootstrap_4_layout.html.twig' %}
+{% block body%}
+
+
+<!--================Checkout Area =================-->
+  <section class="checkout_area padding_top">
+    <div class="container">
+      
+      <div class="billing_details">
+        <div class="row">
+          <div class="col-lg-8">
+            <h3>Your Details</h3>
+             {{ form_start(f,{'attr': {'novalidate': 'novalidate'}} ) }}
+              <div class="col-md-6 form-group p_star">
+                {{ form_widget(f.prenom , {'attr': { 'class': 'form-control','placeholder' : 'First Name'}}) }}
+                <span class="placeholder"> {{ form_errors(f.prenom ) }}</span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                {{ form_widget(f.nom , {'attr': { 'class': 'form-control','placeholder' : 'Name'}}) }}
+                <span class="placeholder"> {{ form_errors(f.nom ) }}</span>
+              </div>
+              <div class="col-md-12 form-group">
+                 {{ form_widget(f.num , {'attr': { 'class': 'form-control','placeholder' : 'Phone Number'}}) }}
+                 <span class="placeholder"> {{ form_errors(f.num) }}</span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                {{ form_widget(f.mail , {'attr': { 'class': 'form-control','placeholder' : 'Mail'}}) }}
+                <span class="placeholder"> {{ form_errors(f.mail) }}</span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                {{ form_widget(f.region , {'attr': { 'class': 'form-control','placeholder' : 'region'}}) }}
+                <span class="placeholder"> {{ form_errors(f.region) }}</span>
+              </div>
+              
+              <div class="col-md-12 form-group p_star">
+                {{ form_widget(f.ville , {'attr': { 'class': 'form-control','placeholder' : 'City'}}) }}
+                <span class="placeholder"> {{ form_errors(f.ville) }}</span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                {{ form_widget(f.rue , {'attr': { 'class': 'form-control','placeholder' : 'Street,Building'}}) }}
+                <span class="placeholder"> {{ form_errors(f.rue) }}</span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                {{ form_widget(f.codePostal , {'attr': { 'class': 'form-control','placeholder' : 'Postal Code'}}) }}
+                <span class="placeholder"> {{ form_errors(f.codePostal) }}</span>
+              </div>
+
+
+              
+        
+          </div>
+          <div class="col-lg-4">
+            <div class="order_box">
+              
+              <div class="payment_item active">
+                <h2 class="m-b10">Contact rapide</h2>
+							<p>Si vous avez des questions, n'hésitez pas à nous contacter via les coordonnées suivantes.</p>
+                            <ul class="no-margin">
+                                <li class="icon-bx-wraper left m-b30">
+                                    <div class="icon-content">
+                                        <h6 class="text-uppercase m-tb0 dlab-tilte">Adresse:</h6>
+                                        <p>123 Tunis, tunis 2000</p>
+                                    </div>
+                                </li>
+                                <li class="icon-bx-wraper left  m-b30">
+                                    <div class="icon-content">
+                                        <h6 class="text-uppercase m-tb0 dlab-tilte">Email:</h6>
+                                        <p>Swappy@gmail.com</p>
+                                    </div>
+                                </li>
+                                <li class="icon-bx-wraper left">
+                                    <div class="icon-content">
+                                        <h6 class="text-uppercase m-tb0 dlab-tilte">Numéro de Téléphone</h6>
+                                        <p>+216 77 88 99 00</p>
+                                    </div>
+                                </li>
+                            </ul>
+							
+              </div>
+              <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector" />
+                <label for="f-option4">I’ve read and accept the </label>
+                <a href="#">terms & conditions*</a>
+              </div>
+                <div class="col-lg-12">
+                 {{ form_widget(f.Confirmer , {'attr': {'class':'btn_3','name':'submit','type':'submit','value':'Confirmation', 'onClick' : 'validateSubmit()'}}) }}
+              </div>
+              {{ form_end(f) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Checkout Area =================-->
+      <script>									
+        function validateSubmit() {
+                                 result = confirm("Êtes-vous sur de vouloir passer la commande ?");
+                                if (result) {
+                                   $('#f').submit();
+                                   
+                                
+                                          }
+                                }
+    </script>
+{% endblock %}

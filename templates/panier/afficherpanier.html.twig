@@ -1,0 +1,45 @@
+{% extends 'base_panier.html.twig' %}
+{% block titre%}
+<title>Panier</title>
+{% endblock %}
+{% block body%} 
+  <!--================Cart Area =================-->
+  <section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Image </th>
+                <th scope="col">Product Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="alert"{% for p in produits %}>
+              
+        <td class="product-item-name">{{p.getProduit().getdescription()}}</td>
+         <td class="product-item-img"><img src="http://localhost/img/{{p.getImage()}}" alt="photo"></td> 
+     
+        <td class="product-item-name">{{p.getProduit().getnom()}}</td>
+        
+        <tr {%  else  %}> <h1>Votre panier est vide </h1></tr>
+    </tr {% endfor %}> 
+
+              
+              
+              
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="#">Continue Shopping</a>
+            
+            <a class="btn_1 checkout_btn_1" href="{{path('passer_commande',{'idPanier':panier.getId()})}}">Proceed to checkout</a>
+            
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+{% endblock %}
