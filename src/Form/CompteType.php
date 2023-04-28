@@ -13,6 +13,8 @@ use Eckinox\TinymceBundle\Form\Type\TinymceType ;
 
 class CompteType extends AbstractType
 {
+
+    // test
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
