@@ -55,13 +55,9 @@
               <div class="payment_item active">
                 <h2 class="m-b10">Contact rapide</h2>
 							<p>Si vous avez des questions, n'hésitez pas à nous contacter via les coordonnées suivantes.</p>
+      
                             <ul class="no-margin">
-                                <li class="icon-bx-wraper left m-b30">
-                                    <div class="icon-content">
-                                        <h6 class="text-uppercase m-tb0 dlab-tilte">Adresse:</h6>
-                                        <p>123 Tunis, tunis 2000</p>
-                                    </div>
-                                </li>
+                                
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-tb0 dlab-tilte">Email:</h6>
@@ -74,13 +70,17 @@
                                         <p>+216 77 88 99 00</p>
                                     </div>
                                 </li>
+                                <li class="icon-bx-wraper left m-b30">
+                                    <div class="icon-content">
+                                        <h6 class="text-uppercase m-tb0 dlab-tilte">Adresse:</h6>
+                                        <a href="{{ path('app_evemt_Map') }}">Cliquer pour voir adresses</a>
+                                    </div>
+                                </li>
                             </ul>
 							
               </div>
               <div class="creat_account">
-                <input type="checkbox" id="f-option4" name="selector" />
-                <label for="f-option4">I’ve read and accept the </label>
-                <a href="#">terms & conditions*</a>
+               
               </div>
                 <div class="col-lg-12">
                  {{ form_widget(f.Confirmer , {'attr': {'class':'btn_3','name':'submit','type':'submit','value':'Confirmation', 'onClick' : 'validateSubmit()'}}) }}

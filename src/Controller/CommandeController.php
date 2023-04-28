@@ -59,6 +59,7 @@ class CommandeController extends AbstractController
      $em->flush();
     return $this->redirectToRoute('interface_affichage_commandes', ['idPanier' => $idPanier]);
      } 
+     
 
 
     

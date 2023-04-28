@@ -157,9 +157,22 @@ public function imprimerFacture(int $idCommande,LignePanierRepository $lr,Panier
      file_put_contents('Téléchargements/facture.pdf', $output);
 
      return $this->redirectToRoute("app_Affichepanier", ['id' => $id]);
+
+
+
+
+     
 }
 
-
+#[Route('/Map', name: 'app_evemt_Map', methods: ['GET'])]//artiste
+    public function Map(CommandeRepository $cr): Response
+    {
+        $cr = $this->getDoctrine()->getRepository(Commande::class)->findAll();
+        return $this->render('maps.html.twig', [
+            // 'evemts' => $evemtRepository->findAll(),
+            'commande' => $cr,
+        ]);
+    }
 
 
 
