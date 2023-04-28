@@ -1,0 +1,73 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+<div class="card">
+                                            <div class="card-header">
+                                                <h5>Comptes</h5>
+                                                <span>affichage des Comptes</span>
+                                                <div class="card-header-right">
+                                                    <ul class="list-unstyled card-option" style="width: 30px;">
+                                                        <li><i class="fa fa open-card-option fa-wrench"></i></li>
+                                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                                        <li><i class="fa fa-trash close-card"></i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-block table-border-style">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="bg-danger">
+                                                                <th>id</th>
+                                                                <th>id utilisateur</th>
+                                                                <th>Nom</th>
+                                                                <th>Nbr Produits</th>
+                                                                <th>Nbr Followers</th>
+                                                                <th>Nbr Followings</th>
+                                                                <th>Date de creation </th>
+                                                                <th>Banned</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                         {% for c in comptes %}
+            <tr>
+                <td class="table-active">{{ c.id }}</td>
+                <td>{{ c.idutilisateur }}</td>
+                <td>{{ c.nom }}</td>
+                <td>{{ c.nbrProduitsPublies }}</td>
+                <td>{{ c.nbrFollowers }}</td>
+                <td>{{ c.nbrFollowings }}</td>
+                <td>{{ c.dateDeCreation    ? c.dateDeCreation|date('Y-m-d') : '' }}</td>
+                <td>{{c.banned}} </td>
+                <td>
+                    
+                    <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse" onclick="location.href='{{ path('app_compte_show_admin', {'id': c.id}) }}'">Afficher</button>
+                    <br>
+                    <br>
+                    {% if c.banned == 0 %}
+                
+                    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_banned', {'id': c.id}) }}'">Banner</button>
+                    {% else %}
+                                        <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_unbanned', {'id': c.id}) }}'">unbanner</button>
+                    {% endif %}
+
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+
+    {% endblock %}

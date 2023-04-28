@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelationFollow index{% endblock %}
+
+{% block body %}
+    <h1>RelationFollow index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_follower</th>
+                <th>Id_followed</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for relation_follow in relation_follows %}
+            <tr>
+                <td>{{ relation_follow.id }}</td>
+                <td>{{ relation_follow.idFollower }}</td>
+                <td>{{ relation_follow.idFollowed }}</td>
+                <td>
+                    <a href="{{ path('app_relation_follow_show', {'id': relation_follow.id}) }}">show</a>
+                    <a href="{{ path('app_relation_follow_edit', {'id': relation_follow.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_relation_follow_new') }}">Create new</a>
+{% endblock %}

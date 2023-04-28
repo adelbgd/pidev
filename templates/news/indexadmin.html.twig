@@ -1,0 +1,65 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+<div class="card">
+                                            <div class="card-header">
+                                                <h5>News</h5>
+                                                <span>affichage des news</span>
+                                                <div class="card-header-right">
+                                                    <ul class="list-unstyled card-option" style="width: 30px;">
+                                                        <li><i class="fa fa open-card-option fa-wrench"></i></li>
+                                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                                        <li><i class="fa fa-trash close-card"></i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-block table-border-style">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="bg-danger">
+                                                                <th>id</th>
+                                                                <th>Titre</th>
+                                                                <th>Contenu</th>
+                                                                <th>Date de creation</th>
+                                                                <th>Image</th>
+                                                                <th>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                         {% for news in news %}
+            <tr>
+                <td class="table-active">{{ news.id }}</td>
+                <td>{{ news.titre }}</td>
+                <td>{{ news.contenu }}</td>
+                <td>{{ news.dateDeCreation ? news.dateDeCreation|date('Y-m-d') : '' }}</td>
+                <td>{{news.image}} </td>
+                <td>
+                    
+                    <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse" onclick="location.href='{{ path('app_news_show_admin', {'id': news.id}) }}'">Afficher</button>
+                    <br>
+                    <br>
+                    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_news_edit', {'id': news.id}) }}'">Modifier</button>
+                    
+                    <!--<button class="btn waves-effect waves-light btn-danger btn-outline-danger" onclick="location.href='{{ path('app_news_delete', {'id': news.id}) }}'">Supprimer</button>-->
+
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+                                                    </table>
+
+                                                </div>
+                         <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_news_new') }}'"  > Créer un News </button>
+
+                                            </div>
+                                            
+                                        </div>
+
+    {% endblock %}

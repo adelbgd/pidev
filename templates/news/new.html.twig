@@ -1,0 +1,32 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% extends 'baseadmin.html.twig' %} 
+
+
+{% block title %}New News{% endblock %}
+
+{% block body %}
+ <div class="col-sm-12">
+                                                <!-- Basic Form Inputs card start -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h2>Creation du News</h2>
+                                                        
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <h4 class="sub-title"></h4>
+                                                        
+                                                      {{ include('news/_form.html.twig') }}
+                                                    <br>
+                                                    <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse" onclick="location.href='{{ path('app_news_index_admin') }}'" ><i class="icofont icofont-exchange"></i>Retour</button>
+                                                    </div>  
+                                                    
+
+                                                  
+                                                </div>
+                                                <!-- Basic Form Inputs card end -->
+                                            </div>
+  
+    
+
+  
+{% endblock %}

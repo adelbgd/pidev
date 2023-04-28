@@ -1,0 +1,37 @@
+{% extends 'basenews.html.twig' %}
+
+{% block title %}News index{% endblock %}
+
+{% block body %}
+<section class="product_list best_seller section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>News <span>recent</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-12">
+                    <div class="best_product_slider owl-carousel">
+                    <div class="owl-nav"><button type="button" role="presentation" class="owl-prev">next</button><button type="button" role="presentation" class="owl-next">previous</button></div>
+                      {% for news in news %}
+                        <div class="single_product_item">
+                            <img src="http://localhost/img/{{news.image}}" alt="">
+                            <div class="single_product_text">
+                                <h4>{{news.titre}}</h4>
+                                <h3>{{news.contenu}}</h3>
+                                <h5>{{news.dateDeCreation ? news.dateDeCreation|date('Y-m-d') : '' }} </h5>
+                                <a href="{{ path('app_news_show', {'id': news.id}) }}" class="add_cart">Show<i class="ti-heart"></i></a>
+                                
+                            </div>
+                        </div>
+                       {% endfor %} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

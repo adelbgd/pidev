@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_tittle text-center">
+                        <h2>Mon compte</h2>
+                    </div>
+                </div>
+    </div>
+   <!-- 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_utilisateur</th>
+                <th>Nom</th>
+                <th>Date_de_creation</th>
+                <th>Nbr_followers</th>
+                <th>Nbr_followings</th>
+                <th>Nbr_produits_publies</th>
+                <th>Banned</th>
+                <th>Profile_image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for compte in comptes %}
+            <tr>
+                <td>{{ compte.id }}</td>
+                <td>{{ compte.idUtilisateur }}</td>
+                <td>{{ compte.nom }}</td>
+                <td>{{ compte.dateDeCreation ? compte.dateDeCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ compte.nbrFollowers }}</td>
+                <td>{{ compte.nbrFollowings }}</td>
+                <td>{{ compte.nbrProduitsPublies }}</td>
+                <td>{{ compte.banned }}</td>
+                <td>{{ compte.profileImage }}</td>
+                <td>
+                    <a href="{{ path('app_compte_show', {'id': compte.id}) }}">show</a>
+                    <a href="{{ path('app_compte_edit', {'id': compte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table> 
+    -->
+<div class="row align-items-center justify-content-between">
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="{{ path('app_compte_show', {'id': 1}) }}" style="text-decoration: none;">
+            <div class="single_feature_post_text">
+                <h3>Mon Profile</h3>
+                <a href="{{ path('app_compte_show', {'id': 1}) }}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="" style="text-decoration: none;">
+            <div class="single_feature_post_text">
+                <h3>Mes Information Personnels</h3>
+                <a href="" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <a href="{{ path('app_compte_index') }}" style="text-decoration: none;">
+            <div class="single_feature_post_text">
+                <h3>comptes</h3>
+                <a href="{{ path('app_compte_index') }}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+
+
+
+    <a href="{{ path('app_compte_new') }}">Create new</a>
+
+{% endblock %}

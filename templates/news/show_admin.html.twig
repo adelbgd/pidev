@@ -1,0 +1,48 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+
+<div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5> News avec id :{{news.id}}</h5>
+                                                        <span>{{news.titre}}</span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li>
+                                                                    <i class="fa fa fa-wrench open-card-option"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-window-maximize full-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-minus minimize-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-refresh reload-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-trash close-card"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <p>
+                                                         {{news.contenu}}
+                                                        </p>
+                                                         <img class="img-fluid" src="http://localhost/img/{{news.image}}"  alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_news_index_admin') }}'">Retour</button>
+                    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_news_edit', {'id': news.id}) }}'">Modifier</button>
+
+{% endblock %}
