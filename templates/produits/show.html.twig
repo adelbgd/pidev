@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ produit.nom }}{% endblock %}
+
+{% block body %}
+ <h1>{{ produit.nom }}</h1>
+ <p> <img src= {{ asset ('uploads/produit_img/'~ produit.image) }} /></p>
+ <p>{{ produit.valeur }}</p>
+ <p>{{ produit.statut }}</p>
+ <p>{{ produit.description }}</p>
+ <p>{{ produit.date |date('Y-m-d')}}</p>
+ <hr>
+ <a href="/">Retour</a>
+{% endblock %}

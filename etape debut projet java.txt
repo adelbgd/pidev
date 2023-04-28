@@ -1,0 +1,20 @@
+creation du projet: 1) java with mave.... /// java application 
+
+nos packages/
+1)DEFAULT 
+2)MODELS
+3)CONTROLLERS
+4)GUI
+5)SERVICES
+6)UTIL
+
+
+fetchbyid 
+
+fetchbycriteria
+
+
+binding :refrence de label text d'une variable: maaneha bech nrecuperi l valeur mte3ha yelzem naateha id.
+
+
+                     
