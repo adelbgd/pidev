@@ -11,13 +11,7 @@ class LignePanierType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('nomProduit')
-            ->add('description')
-            ->add('image')
-            ->add('idPanier')
-            ->add('idProduit')
-        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

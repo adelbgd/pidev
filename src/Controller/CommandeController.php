@@ -15,6 +15,7 @@ use App\Repository\CommandeRepository;
 use App\Repository\PanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Service\PdfService;
 class CommandeController extends AbstractController
 {
     #[Route('/commande', name: 'app_commande')]
@@ -60,7 +61,8 @@ class CommandeController extends AbstractController
      } 
 
 
-      
+    
+     } 
 
 
 
@@ -150,4 +152,4 @@ class CommandeController extends AbstractController
 
         return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
     }*/
-}
+

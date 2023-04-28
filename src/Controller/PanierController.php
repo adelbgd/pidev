@@ -12,11 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LignePanierRepository;
 use App\Entity\LignePanier;
 use App\Entity\Commande;
+use App\Repository\CommandeRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Form\CommandeType;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 
 class PanierController extends AbstractController
@@ -100,15 +103,61 @@ public function passerCommande(int $idPanier,ManagerRegistry $doctrine,Request $
         $entityManager = $doctrine->getManager() ;
         $entityManager->persist($commande);
         $entityManager->flush();
+        $idCommande =$commande->getId();
 
-        return $this->redirectToRoute("app_Affichepanier", ['idPanier' => $idPanier]);
+        return $this->redirectToRoute("app_facture", ['idCommande' => $idCommande]);
     }
 
     return $this->renderForm("commande/passercommande.html.twig",
         array("f"=>$form));
 }
 
+#[Route('/imprimerfacture/{idCommande}', name: 'app_facture')]
+public function imprimerFacture(int $idCommande,LignePanierRepository $lr,PanierRepository $pr,ClientRepository $ur,CommandeRepository $cr): Response
+{
+    $user = $ur->find(1);
+    $panier = $pr->findOneBy(['user' => $user]);
+    $id=$panier->getId();
+    $produits_par_panier=$lr->findBy(['panier' => $panier]);
+    $commande = $cr->find($idCommande);
+    $publicPath = $this->getParameter('kernel.project_dir') . '/public';
+    $pdfOptions = new Options();
+    $pdfOptions->set('defaultFont', 'Arial');
+    $pdfOptions->set('isRemoteEnabled', true);
+    $pdf = new Dompdf($pdfOptions);
+//Contenu du Pdf
+    $html = '<html><body>';
+    //$html .= '<h1>Facture</h1>';
+    // $html .= '<img src="' . $publicPath . '/en_tete.png" />';
+    $html .= '<img src="public/images/en_tete.png" />';
+    //$html .= '<img src="data:image/png;base64,'.base64_encode(file_get_contents($publicPath.'/en_tete.png')).'" />';
+    $html .= '<p>Vendeur : Swappy</p>';
+    $html .= '<p>________________________________________________</p>';
+    $html .= '<p>Client : '.$commande->getNom().' '.$commande->getPrenom().'</p>';
+    $html .= '<p>Commande n°'.$commande->getId().'</p>';
+    $html .= '<p>________________________________________________</p>';
+    $html .= '<h3>Détails de la commande</h3>';
+    $html .= '<table border="1" cellspacing="0">';
+    $html .= '<tr><th>Image</th><th>Produit</th><th>Description</th></tr>';
+    foreach ($produits_par_panier as $p) {
+        $html .= '<tr><td>'.$p->getProduit()->getImage().'</td><td>'.$p->getProduit()->getNom().'</td><td>'.$p->getProduit()->getDescription().'</td></tr>';
+    }
+    $html .= '</table>';
+   // $html .= '<img src="data:image/png;base64,'.base64_encode(file_get_contents($publicPath.'/bas_page.png')).'" />';
+    //$html .= '<img src="' . $publicPath . '/bas_page.png" />';
+    
+    $html .= '</body></html>';
+    $pdf->loadHtml($html);
+    $pdf->setPaper('A4', 'portrait');
+     // Render the PDF as a string
+     $pdf->render();
 
+     // Retourner le pdf
+     $output = $pdf->output();
+     file_put_contents('Téléchargements/facture.pdf', $output);
+
+     return $this->redirectToRoute("app_Affichepanier", ['id' => $id]);
+}
 
 
 

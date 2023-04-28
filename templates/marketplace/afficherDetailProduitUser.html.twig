@@ -1,0 +1,136 @@
+{% extends 'base_mark.html.twig' %}
+{% block titre%}
+<title>Boutique</title>
+{% endblock %}
+{% block body%} 
+<!-- Content -->
+ <!-- Content -->
+ <div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url(../images/background/slide11.jpg);">
+        <div class="container">
+            <div class="dlab-bnr-inr-entry">
+                <h1 class="text-white">Détails Produit</h1>
+            </div>
+        </div>
+    </div>
+    <!-- inner page banner END -->
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Détails Produit</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+ </div>
+
+ <!-- Title separator style 9 -->
+
+
+   
+ <div class="section-head text-center">
+     <h2 class="text-uppercase">Détails de {{p.getNom()}} </h2>
+     
+     <div class="dlab-separator-outer ">
+         <div class="dlab-separator bg-primary style-skew"></div>
+     </div>
+     
+ </div>
+
+
+
+
+<!-- Title separator style 9 END -->
+<!-- Product details -->
+
+<div class="container woo-entry">
+ <div class="row m-b30">
+     <div class="col-lg-5 col-md-5">
+         <div class="product-gallery on-show-slider"> 
+             <div id="sync1" class="owl-carousel owl-theme owl-btn-center-lr m-b5 owl-btn-1 primary">
+                 <div class="item">
+                     <div class="mfp-gallery">
+                         <div class="dlab-box">
+                             <div class="dlab-thum-bx dlab-img-overlay1 ">
+                            
+                                 
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+          
+             </div>
+             
+           
+         </div>
+     </div>
+     <div class="col-lg-7 col-md-7">
+         <div class="sticky-top">
+            {{ form_start(f,{'attr': {'novalidate': 'novalidate'}} ) }}
+                 <div class="dlab-post-title ">
+                    <img src="{{asset('uploads/produit_img/' ~ p.getImage)}}" alt="" width="350" height="400">
+                     <h2 class="post-title"><a href="#">{{p.getNom()}}</a></h2>
+                     <p class="m-b10">{{p.getDescription()}}</p>
+                     <div class="dlab-divider bg-gray tb15"><i class="icon-dot c-square"></i></div>
+                 </div>
+                 <div class="relative">
+                    
+                
+                     <div class="shop-item-rating">
+                         <span class="rating-bx"> 
+                           <button id="myButton" class="site-button radius-no"  type="SubmitType"><i class="ti-shopping-cart"></i>Ajouter au Panier</button>
+                         </span>
+                       
+                     </div>
+                 </div>
+                 
+
+                {{ form_end(f) }}
+         </div>
+     </div>
+ </div>
+     <!-- Title separator style 3 END -->
+         <!-- Title separator style 4 -->
+         <div class="p-a30 bg-white m-b40">
+             <div class="section-head text-center">
+                 <h2 class="text-uppercase">Les produits associés à notre offre</h2>
+                 <div class="dlab-separator-outer ">
+                     <div class="dlab-separator bg-primary style-liner"></div>
+                 </div>
+                 <p>Il y a beaucoup d'autres produits que D&R offre. D&R est le principal fournisseur tunisien de pièces automobiles et de produits pour les fans et les supporters de Drift! Avec plus de 250 produits de haute qualité.</p>
+             </div>
+             <div class="section-content"></div>
+         </div>
+         <!-- Title separator style 4 END -->
+
+
+</div>
+</div>
+
+<script>
+      function createNotification(title, content) {
+        if (Notification.permission === 'granted') {
+          var notification = new Notification(title, {
+            body: content
+          });
+        }
+        else if (Notification.permission !== 'denied') {
+          Notification.requestPermission(function(permission) {
+            if (permission === 'granted') {
+              var notification = new Notification(title, {
+                body: content
+              });
+            }
+          });
+        }
+      }
+      
+      document.getElementById('myButton').addEventListener('click', function() {
+        createNotification('Panier', 'Produit ajouté au panier');
+      });
+    </script>
+{% endblock %}
+

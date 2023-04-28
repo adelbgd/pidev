@@ -20,7 +20,8 @@
               <tr class="alert"{% for p in produits %}>
               
         <td class="product-item-name">{{p.getProduit().getdescription()}}</td>
-         <td class="product-item-img"><img src="http://localhost/img/{{p.getImage()}}" alt="photo"></td> 
+        
+         <td class="product-item-img"><img src="{{asset('uploads/produit_img/' ~ p.getProduit.getImage())}}" alt="" width="350" height="200"></td> 
      
         <td class="product-item-name">{{p.getProduit().getnom()}}</td>
         
@@ -33,10 +34,10 @@
             </tbody>
           </table>
           <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="#">Continue Shopping</a>
-            
-            <a class="btn_1 checkout_btn_1" href="{{path('passer_commande',{'idPanier':panier.getId()})}}">Proceed to checkout</a>
-            
+            <a class="btn_1" href="{{path('app_marketplace',{'id':panier.getId()}) }}">Continue Shopping</a>
+            <a class="btn_1 checkout_btn_1" href="{{path('vider_panier',{'id':panier.getId()}) }}">Vider Panier</a>
+            <a class="btn_1 checkout_btn_1" href="{{path('passer_commande',{'idPanier':panier.getId()})}}">Passer Commande</a>
+            <a  class="btn_1 checkout_btn_1" href="{{path('afficher_commandes',{'idPanier':panier.getId()})}}">Consulter Commandes</a>
           </div>
         </div>
       </div>

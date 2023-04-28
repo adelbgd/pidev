@@ -1,0 +1,70 @@
+{% extends 'base_mark.html.twig' %}
+{% block titre%}
+<title>Boutique</title>
+{% endblock %}
+{% block body%} 
+<!-- Content -->
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="dlab-bnr-inr overlay-black-middle" style="background-image:url(images/background/bg4.jpg);">
+        <div class="container">
+            <div class="dlab-bnr-inr-entry">
+                <h1 class="text-white">Shop</h1>
+            </div>
+        </div>
+    </div>
+    <!-- inner page banner END -->
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Shop</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumb row END -->
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-7 align-self-center">
+        <div class="section-title text-center">
+            <h6 class="sub-title double-line"><span></span>  Products</h6>
+            <h2 class="title">Our Popular Products</h2>
+            <p class="content">Swappy se présente comme un point de référence pour la mode destinée à ce public, toujours plus exigeant et en à peine 2 ans, elle compte 100 établissements qui contribuent à consolider son image de marque. Après 18 ans, la chaîne compte actuellement plus de 1000 magasins dans plus de 70 marchés, avec des ventes représentant 9 % des revenus totaux de l'ensemble du groupe. </p>
+        </div>
+    </div>
+    
+  <!-- contact area -->
+  <div class="section-full content-inner">
+    <!-- Product -->
+    <div class="container">
+        <div class="row">
+            {% for i in p %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="item-box m-b10">
+                    <div class="item-img">
+                        
+                        <img src="{{asset('uploads/produit_img/' ~ i.image)}}" alt="photo" width="350" height="350" />
+                        <div class="item-info-in">
+                            <ul>
+                            
+                            <li><a href="{{path('affichedetail',{'id':i.idProd})}}"><i class="ti-eye"></i></a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item-info text-center text-black p-a10">
+                        
+                       
+                        
+                        <p class="content">{{i.getDescription()}}</p>
+                        <h4 class="item-price"><span class="text-primary">{{i.getNom()}} </span></h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+{% endblock %}

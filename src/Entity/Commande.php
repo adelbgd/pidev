@@ -27,7 +27,7 @@ class Commande
     
     #[ORM\Column]
     #[Assert\NotBlank(message:"")]
-    #[Assert\Length(exactly: 8, exactMessage : "Le code postal doit etre un nombre de huit chiffres")]
+    #[Assert\Length(exactly: 8, exactMessage : "Le numero de télephone doit etre un nombre de huit chiffres")]
     private ?int $num = null;
 
     #[ORM\Column(length: 150)]

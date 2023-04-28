@@ -1,4 +1,4 @@
-{% extends 'base-front.html.twig' %}
+{% extends 'base.html.twig' %}
 {% block titre%}
 <title>Commande</title>
 {% endblock %}
@@ -24,21 +24,20 @@
                         <thead class="text-left">
     <tr>
         <th>Numéro de la Commande</th>
-        <th>Date Lancement</th>
+        <th>coordonnées</th>
         <th>Adresse de livraison</th>
-        <th>Etat</th>
-        <th>Montant total à payer</th>  
+        
+ 
     </tr>
 </thead>
 <tbody>
     <tr class="alert"{% for c in commandes %}>
 
         <td class="product-item-name">{{c.getId()}}</td>
-        <td class="product-item-name">{{c.getDateCommande()|date('d/m/Y')}}</td>
-        <td class="product-item-name">{{c.getRue()}} {{c.getVille()}} {{c.getGouvernorat()}} {{c.getCodePostal()}}</td>
-        <td class="product-item-name">{{c.getEtatCommande()}}</td>
-        <td class="product-item-name">{{c.getMontant()}} DT</td>
+        <td class="product-item-name">{{c.getPrenom}} {{c.getNom()}} {{c.getNum()}} {{c.getMail()}}</td>
+        <td class="product-item-name">{{c.getRegion()}} {{c.getVille()}} {{c.getRue()}} {{c.getCodePostal()}}</td>
         <td class="product-item-name"><a class="site-button m-r15" href="{{path('suppC',{'id':c.getId()}) }}"> Supprimer</a></td>
+        <td class="product-item-name"><a class="site-button m-r15" href="{{path('app_facture',{'idCommande':c.getId()}) }}"> Imprimer</a></td>
         <tr {%  else  %}> <h1>Vous n'avez aucune commande </h1></tr>
     </tr {% endfor %}>
 </tbody>  

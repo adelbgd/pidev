@@ -23,7 +23,7 @@ class ClientController extends AbstractController
     public function getAllUsers(ClientRepository $userRep): Response
     {
         $allUsers=$userRep->findAll();
-        return $this->render('user/getAll.html.twig', [
+        return $this->render('client/getAll.html.twig', [
             'allUsers' => $allUsers,
         ]);
     }
