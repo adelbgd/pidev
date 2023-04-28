@@ -21,14 +21,20 @@ class CommentaireController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_commentaire_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CommentaireRepository $commentaireRepository): Response
+    #[Route('/new/{id}', name: 'app_commentaire_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, Publication $p , CommentaireRepository $commentaireRepository): Response
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $rr = $this->filterwords($commentaire->getSujetCom());
+            $commentaire->setSujetCom($rr);
+
+
+            $commentaire->setIdUser(1);
+            $commentaire->setIdPub($p) ;
             $commentaireRepository->save($commentaire, true);
 
             return $this->redirectToRoute('app_publication_index', [], Response::HTTP_SEE_OTHER);
@@ -76,4 +82,34 @@ class CommentaireController extends AbstractController
 
         return $this->redirectToRoute('app_commentaire_index', [], Response::HTTP_SEE_OTHER);
     }
+    
+    public function supprimer (Request $request, Commentaire $commentaire, Publication $p, CommentaireRepository $commentaireRepository): Response
+    {
+        $commentaireRepository->remove($commentaire, true);
+        return $this->redirectToRoute('app_publication1_show', ['id'=> $p->getId()]);
+    }
+
+    public function filterwords($text)
+    {
+        $filterWords = array('stupid', 'bhim', 'msatek', 'fuck', 'slut', 'bitch' ,'shit','merde','fucking','putin','ptn','enculer','salaup');
+        $filterCount = count($filterWords);
+        $str = "";
+        $data = preg_split('/\s+/',  $text);
+        foreach($data as $s){
+            $g = false;
+            foreach ($filterWords as $lib) {
+                if($s == $lib){
+                    $t = "";
+                    for($i =0; $i<strlen($s); $i++) $t .= "*";
+                    $str .= $t . " ";
+                    $g = true;
+                    break;
+                }
+            }
+            if(!$g)
+            $str .= $s . " ";
+        }
+        return $str;
+    }
+
 }

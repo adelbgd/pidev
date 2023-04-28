@@ -42,9 +42,10 @@ class Publication1Controller extends AbstractController
 
     #[Route('/{id}', name: 'app_publication1_show', methods: ['GET'])]
     public function show(Publication $publication): Response
-    {
+    {$comment=$publication->getCommentaires();
         return $this->render('publication1/show.html.twig', [
             'publication' => $publication,
+            'comment'=> $comment,
         ]);
     }
 

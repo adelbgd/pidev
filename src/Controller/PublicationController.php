@@ -9,15 +9,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 #[Route('/publication')]
 class PublicationController extends AbstractController
 {
     #[Route('/', name: 'app_publication_index', methods: ['GET'])]
-    public function index(PublicationRepository $publicationRepository): Response
+    public function index(PublicationRepository $publicationRepository, PaginatorInterface $paginator,Request $request ): Response
     {
+        $publication = $publicationRepository->findAll();
+        $publication = $paginator->paginate(
+            $publication , /* query NOT result */
+            $request->query->getInt(key:'page', default: 1)/*page number*/,
+            limit:2/*limit per page*/
+        );  
+
         return $this->render('publication/index.html.twig', [
-            'publications' => $publicationRepository->findAll(),
+           'publications' => $publication ,
+            'pagination' => $publication,
         ]);
     }
 
@@ -44,9 +54,11 @@ class PublicationController extends AbstractController
     #[Route('/{id}', name: 'app_publication_show', methods: ['GET'])]
     public function show(Publication $publication): Response
     { $comment=$publication->getCommentaires();
+        
         return $this->render('publication/show.html.twig', [
             'publication' => $publication,
             'comment'=> $comment,
+            
         ]);
     }
 
@@ -77,4 +89,22 @@ class PublicationController extends AbstractController
 
         return $this->redirectToRoute('app_publication_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/publication/{id}/signal', name: 'app_publication_signal', methods: ['POST'])]
+public function signalPublication(Request $request, publication $publication,PublicationRepository $publicationRepository): Response
+{
+    $entityManager = $this->getDoctrine()->getManager();
+
+    $publication->setNbSignals($publication->getNbSignals() + 1);
+
+    $entityManager->persist($publication);
+
+    $entityManager->flush();
+    if($publication->getNbSignals() >=4){
+        $publicationRepository->remove($publication, true);
+        return $this->redirectToRoute('app_publication_index');
+    }
+
+    return $this->redirectToRoute('app_publication_show', ['id' => $publication->getId()]);
+}
 }

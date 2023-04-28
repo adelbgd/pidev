@@ -3,23 +3,40 @@
 {% block title %}Publication index{% endblock %}
 
 {% block body %}
-    <h1>Publication index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
+   <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                      <div class="card">
+                                            <div class="card-header">
+                                                <h5>Publication</h5>
+                                                <span>affichage des publications</span>
+                                                <div class="card-header-right">
+                                                    <ul class="list-unstyled card-option" style="width: 30px;">
+                                                        <li><i class="fa fa open-card-option fa-wrench"></i></li>
+                                                        <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                        <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        <li><i class="fa fa-refresh reload-card"></i></li>
+                                                        <li><i class="fa fa-trash close-card"></i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-block table-border-style">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="bg-danger">
+                                                                 <th>Id</th>
                 <th>Id_user</th>
                 <th>Titre_pub</th>
                 <th>Contenu_pub</th>
                 <th>Date_pub</th>
                 <th>Nb_signals</th>
                 <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for publication in publications %}
-            <tr>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for publication in publications %}
+              <tr>
                 <td>{{ publication.id }}</td>
                 <td>{{ publication.idUser }}</td>
                 <td>{{ publication.titrePub }}</td>
@@ -27,8 +44,11 @@
                 <td>{{ publication.datePub ? publication.datePub|date('Y-m-d') : '' }}</td>
                 <td>{{ publication.nbSignals }}</td>
                 <td>
-                    <a href="{{ path('app_publication1_show', {'id': publication.id}) }}">show</a>
-                    <a href="{{ path('app_publication1_edit', {'id': publication.id}) }}">edit</a>
+                    
+                    <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse" onclick="location.href='{{path('app_publication1_show', {'id': publication.id}) }}'">Afficher</button>
+                    <br>
+                    <br>
+                    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{  path('app_publication1_edit', {'id': publication.id})  }}'">Modifier</button>
                 </td>
             </tr>
         {% else %}
@@ -37,7 +57,60 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+                                                    </table>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    <a href="{{ path('app_publication1_new') }}">Create new</a>
+
+<canvas id="myChart" style="width: 1000px; height: 600px"></canvas>
+
+<script>
+var xValues = [];
+var yValues = [];
+
+{% for publication in publications %}
+    xValues.push("{{ publication.titrepub }}");
+    yValues.push({{ publication.getCommentairesCount() }});
+{% endfor %}
+
+var barColors = [];
+for (var i = 0; i < xValues.length; i++) {
+    // Génère une couleur aléatoire pour chaque barre
+    barColors.push(rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.7));
+}
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Nombre de commentaires par publication"
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+</script>
+        
+
+                                                </div>
+                         <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_publication1_new') }}'"  > Créer publication </button>
+
+
+                                            </div>
+                                            
+                                        </div>
+                                        
 {% endblock %}

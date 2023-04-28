@@ -1,13 +1,52 @@
 {% extends 'back.html.twig' %}
 
 {% block title %}Edit Publication{% endblock %}
-
 {% block body %}
     <h1>Edit Publication</h1>
 
-    {{ include('publication1/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="form-container">
+        {{ include('publication1/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_publication1_index') }}">back to list</a>
+        <div class="button-container">
+            <a href="{{ path('app_publication1_index') }}" class="btn-3">Back to List</a>
+            {{ include('publication1/_delete_form.html.twig', {'button_label': 'Delete', 'button_class': 'btn-3'}) }}
+        </div>
+    </div>
 
-    {{ include('publication1/_delete_form.html.twig') }}
+    <style>
+        .form-container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px #ccc;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .btn-3 {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+        
+        .btn-3:hover {
+            background-color: white;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+    </style>
 {% endblock %}
+

@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+app_supprimer:
+    path: /publication1/{id}/supprimer
+    controller: App\Controller\CommentaireController::supprimer

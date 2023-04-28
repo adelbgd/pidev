@@ -3,40 +3,124 @@
 {% block title %}Publication{% endblock %}
 
 {% block body %}
-    <h1>Publication</h1>
+   <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5> publication avec id :{{publication.id}}</h5>
+                                                        <span>{{publication.titrePub}}</span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li>
+                                                                    <i class="fa fa fa-wrench open-card-option"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-window-maximize full-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-minus minimize-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-refresh reload-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-trash close-card"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ publication.id }}</td>
-            </tr>
-            <tr>
-                <th>Id_user</th>
-                <td>{{ publication.idUser }}</td>
-            </tr>
-            <tr>
-                <th>Titre_pub</th>
-                <td>{{ publication.titrePub }}</td>
-            </tr>
-            <tr>
-                <th>Contenu_pub</th>
-                <td>{{ publication.contenuPub }}</td>
-            </tr>
-            <tr>
-                <th>Date_pub</th>
-                <td>{{ publication.datePub ? publication.datePub|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Nb_signals</th>
-                <td>{{ publication.nbSignals }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_publication1_index') }}">back to list</a>
+                                                        <h5>Contenu de la pub</h5>{{publication.contenuPub}} 
+                                                        <br> 
+                                                        <h5>Date de publication</h5>{{ publication.datePub ? publication.datePub|date('Y-m-d') : '' }}
+                                                        <br> 
+                                                        <h5>Nombre de signals</h5>{{publication.nbSignals}}
+                                                        <br> 
+                                                    
+                                                            <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path ('app_publication1_edit', {'id': publication.id})}}'"> Edit </button>
+                                                            <button class="btn waves-effect waves-light btn-success btn-outline-success" id="comment" > Commentaires </button>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-    <a href="{{ path('app_publication1_edit', {'id': publication.id}) }}">edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+   
+
+    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{path ('app_publication1_index')}}'"> Back to list </button>
+ 
+
 
     {{ include('publication1/_delete_form.html.twig') }}
+
+     <div class="page-wrapper" id="commentaire" style="display:none;"
+>
+             {% for c in comment %}
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5> commentaire avec id :{{c.getId()}}</h5>
+                                                        <span>{{c.getUsername()}}</span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li>
+                                                                    <i class="fa fa fa-wrench open-card-option"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-window-maximize full-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-minus minimize-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-refresh reload-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-trash close-card"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+
+
+                                                        <h5>Contenu du commenatire </h5>{{c.getSujetCom()}} 
+                                                        <br> 
+                                                        <h5>Date du comentaire</h5>{{ c.getDateCom() ? c.getDateCom()|date('Y-m-d') : '' }}
+                                                        <br> 
+                                                        <h5>Nombre de signals</h5>{{publication.nbSignals}}
+                                                        <br> 
+                                                    
+                                                            <button class="btn waves-effect waves-light btn-danger btn-outline-danger" onclick="location.href='{{ path ('app_supprimer', {'id': c.getId()})}}'"> delete </button>
+                                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Hide the row when Followers is clicked
+    $("#comment").click(function() {
+      
+      $('#commentaire').show();
+     // $('#followings-row').hide();
+      // Change the text of Recent Photos to Followers
+      //$("#recent-photos").text("Followers");
+      
+    });
+  });
+</script>
+<script>
 {% endblock %}

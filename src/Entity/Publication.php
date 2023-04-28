@@ -20,6 +20,10 @@ class Publication
     private ?int $id_user = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Regex(
+        pattern: '/^[A-Za-z]+$/',
+        message: 'The title must contain only letters.',
+    )]
     private ?string $titre_pub = null;
 
     #[ORM\Column(length: 255)]
@@ -103,13 +107,21 @@ class Publication
 
         return $this;
     }
-
+    public function getNbSignalsCount(): int
+    {
+        return $this->getNbSignals()->count();
+    }
     /**
      * @return Collection<int, Commentaire>
      */
     public function getCommentaires(): Collection
     {
+        
         return $this->commentaires;
+    }
+    public function getCommentairesCount(): int
+    {
+        return $this->getCommentaires()->count();
     }
 
     public function addCommentaire(Commentaire $commentaire): self

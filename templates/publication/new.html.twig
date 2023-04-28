@@ -3,9 +3,11 @@
 {% block title %}New Publication{% endblock %}
 
 {% block body %}
-    <h1>Create new Publication</h1>
+    <h1>Share your product </h1>
+
+    
 
     {{ include('publication/_form.html.twig') }}
 
-    <a href="{{ path('app_publication_index') }}">back to list</a>
+    <a href="{{ path('app_publication_index') }}" class="btn_3">back to list</a>
 {% endblock %}

@@ -1,9 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Commentaire{% endblock %}
+{% block title %}New Comment{% endblock %}
 
 {% block body %}
-    <h1>Create new Commentaire</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Share your comment</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f7f7f7;
+			padding: 20px;
+		}
+
+		h1 {
+			font-size: 36px;
+			color: #333;
+			margin-bottom: 20px;
+			text-align: center;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+
+		form {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.1);
+		}
+
+		label {
+			display: block;
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"],
+		input[type="email"],
+		textarea {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			font-size: 16px;
+			font-family: Arial, sans-serif;
+		}
+
+		.btn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
+
+		.btn:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<h1>Share your comment</h1>
+	
+		
+</body>
+</html>
 
     {{ include('commentaire/_form.html.twig') }}
 
