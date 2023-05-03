@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+     <!-- breadcrumb start-->
+     <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>News</h2>
+                            <p>l'actualité</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+
+
+    <!-- feature_part start-->
+    <section class="feature_part padding_top">
+        <div class="container">
+            
+           
+
+            
+       
+
+    
+
+    
+
+       <section class="blog_area single-post-area padding_top">
+
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8 posts-list">
+               <div class="single-post">
+                  <div class="feature-img">
+                     <img class="img-fluid" src="http://localhost/images/{{news.image}}"  alt="">
+                  </div>
+                  <div class="blog_details">
+                     <h2>{{news.titre}}
+                     </h2>
+                     <ul class="blog-info-link mt-3 mb-4">
+                        <li><a href="#"><i class="far fa-user"></i>{{ news.dateDeCreation ? news.dateDeCreation|date('Y-m-d') : '' }}</a></li>
+                     
+                     </ul>
+                     <p class="excert">
+                        {{news.contenu}}
+                     </p>
+                     </div></div></div></div></div></section>
+                   <a href="{{ path('app_news_index') }}">back to list</a>
+   
+        </div>
+    </section>
+{% endblock %}

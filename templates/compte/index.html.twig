@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Mon Compte</h2>
+                            <p>welcome <span>-</span>back</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb end -->
+     <!-- feature_part start-->
+    <section class="feature_part padding_top">
+        <div class="container">
+
+    <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_tittle text-center">
+                        <h2>Comptes</h2>
+                    </div>
+                    <div>
+                    
+                    </div>
+                    <div class="search_input" id="search_input_box">
+            <div class="container ">
+                <form class="d-flex justify-content-between search-inner"id="search-form">
+                    <input type="text" class="form-control" name="search-field" placeholder="Search Here">
+                    
+                </form>
+            </div>
+        </div>
+                </div>
+    </div>
+   
+   <section class="product_list  section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>Explorer <span>comptes</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-between" >
+                <div class="col-lg-12">
+                    <div style =" display: flex;
+  flex-direction: row; align-items: center; justify-content: center; row-gap: 50px;"id="comptes-list">
+                      {% for compte in comptes %}
+                      {% if compte.banned == 0 %}
+                        <div class="single_product_item" style="  margin-right: 50px;">
+                            <img src="http://localhost/img/{{compte.profileImage}}" alt="profile image" width="250px" height="150px">
+                            <div class="single_product_text">
+                                <h4>{{compte.nom}}</h4>
+                                
+                            <a href="{{ path('app_compte_show', {'id': compte.id}) }}" class="feature_btn">Show</a>
+                                
+                            </div>
+                        </div>
+                        {% endif %}
+                       {% endfor %} 
+
+                    </div>
+                   {% if pageCount > 1 %}
+                                <div class="pagination" style="position:absolute; left:500px;margin-top:100px;">
+                                    <ul class="styled-pagination">
+                                        {% if comptes.currentPageNumber > 1 %}
+                                        {% set paginationData = comptes.getPaginationData() %}
+                                        {% if paginationData.previous is not empty %}
+                                            <li>
+                                                <a href="{{ path('app_compte_index', { 'page': paginationData.previous }) }}">
+                                                    
+                                                    Previous &raquo;
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% endif %}
+
+                                        {% for page in comptes.getPaginationData().pagesInRange %}
+                                        {% if page != comptes.currentPageNumber %}
+                                        <li>
+                                            <a href="{{ path('app_compte_index', { 'page': page }) }}">
+                                                {{ page }}
+                                            </a>
+                                        </li>
+                                        {% else %}
+                                        <li class="active">
+                                            {{ page }}
+                                        </li>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        {% if comptes.currentPageNumber < comptes.pageCount %}
+                                        {% set paginationData = comptes.getPaginationData() %}
+                                        {% if paginationData.next is not empty %}
+                                            <li>
+                                                <a href="{{ path('app_compte_index', { 'page': paginationData.next }) }}">
+                                                    Next &raquo;
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endif %}
+                                   
+                                    
+
+                            </ul>
+                        </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+
+    <a href="{{ path('app_compte_new') }}">Create new</a>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        const searchForm = document.querySelector('#search-form');
+        const comptesContainer = document.querySelector('#comptes-list');
+
+        searchForm.elements['search-field'].addEventListener('keyup', (event) => {
+            // récupérer la valeur du champ de recherche
+            event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
+            const searchTerm = searchForm.elements['search-field'].value.trim();
+
+            // envoyer une requête Ajax au contrôleur Symfony
+            if (searchTerm !== '') {
+                $.ajax({
+                    url: "{{ path('search_comptes') }}",
+                    method: "POST",
+                    data: { search_field: searchTerm },
+                    success: function (response) {
+
+                        comptesContainer.innerHTML = '';
+                        comptesContainer.innerHTML = response;
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+{% endblock %}
+
+{% block css %}
+{{parent()}}
+<link rel="stylesheet" href="{{asset('front/css/pagination.css')}}">
+{% endblock %}
+

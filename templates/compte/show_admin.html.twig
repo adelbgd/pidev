@@ -1,0 +1,53 @@
+{% extends 'baseadmin.html.twig' %}
+{% block body %}
+
+<div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5> Compte avec id :{{compte.id}}</h5>
+                                                        <span>{{compte.nom}}</span>
+                                                        <div class="card-header-right">
+                                                            <ul class="list-unstyled card-option">
+                                                                <li>
+                                                                    <i class="fa fa fa-wrench open-card-option"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-window-maximize full-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-minus minimize-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-refresh reload-card"></i>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-trash close-card"></i>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-block">
+                                                     <img class="img-fluid" src="http://localhost/img/{{compte.profileimage}}"  alt="" width="160px" height="160px">
+
+
+                                                        <h5>Followers</h5>{{compte.nbrFollowers}}
+                                                        <h5>Followings</h5>{{compte.nbrFollowings}}
+                                                        <h5>Produits</h5>{{compte.nbrProduitsPublies}}
+
+                                                    
+                                                        
+                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                    <button class="btn waves-effect waves-light btn-success btn-outline-success" onclick="location.href='{{ path('app_compte_index_admin') }}'">Retour</button>
+
+{% endblock %}

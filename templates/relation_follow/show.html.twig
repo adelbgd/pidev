@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelationFollow{% endblock %}
+
+{% block body %}
+    <h1>RelationFollow</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ relation_follow.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_follower</th>
+                <td>{{ relation_follow.idFollower }}</td>
+            </tr>
+            <tr>
+                <th>Id_followed</th>
+                <td>{{ relation_follow.idFollowed }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_relation_follow_index') }}">back to list</a>
+
+    <a href="{{ path('app_relation_follow_edit', {'id': relation_follow.id}) }}">edit</a>
+
+    {{ include('relation_follow/_delete_form.html.twig') }}
+{% endblock %}

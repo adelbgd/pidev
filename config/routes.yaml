@@ -1,3 +1,21 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+app_unfollow:
+    path: /compte/{id}/unfollow
+    controller: App\Controller\CompteController::unfollow
+
+app_follow:
+    path: /compte/{id}/follow
+    controller: App\Controller\CompteController::follow
+    
+app_banned:
+    path: /compte/admin/{id}/banned
+    controller: App\Controller\CompteController::banned
+    
+app_unbanned:
+    path: /compte/admin/{id}/unbanned
+    controller: App\Controller\CompteController::unbanned
+search_comptes:
+    path: /search-comptes
+    controller: App\Controller\CompteController::searchComptes
