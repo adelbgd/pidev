@@ -5,21 +5,25 @@ use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
+    #[Groups("commandes")]
     #[ORM\Column(name:"id_commande")]
     private ?int $id = null;
     
 
     #[ORM\Column(length: 150)]
+    #[Groups("commandes")]
     #[Assert\NotBlank(message:"")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 150)]
+    #[Groups("commandes")]
     #[Assert\NotBlank(message:"")]
     private ?string $nom = null;
 
@@ -27,27 +31,33 @@ class Commande
     
     #[ORM\Column]
     #[Assert\NotBlank(message:"")]
+    #[Groups("commandes")]
     #[Assert\Length(exactly: 8, exactMessage : "Le numero de télephone doit etre un nombre de huit chiffres")]
     private ?int $num = null;
 
     #[ORM\Column(length: 150)]
+    #[Groups("commandes")]
     #[Assert\NotBlank(message:"")]
     private ?string $mail = null;
 
     #[ORM\Column(length: 150)]
+    #[Groups("commandes")]
     #[Assert\NotBlank(message:"")]
     private ?string $region = null;
 
     #[ORM\Column(length: 150)]
+    #[Groups("commandes")]
     #[Assert\NotBlank(message:"")]
     private ?string $ville = null;
 
     #[ORM\Column(length: 150)]
+    #[Groups("commandes")]
     #[Assert\NotBlank(message:"")]
     private ?string $rue = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"")]
+    #[Groups("commandes")]
     #[Assert\Positive(message:"Le code postal doit etre un nombre positif !")]
     #[Assert\Length(exactly: 4, exactMessage : "Le code postal doit etre un nombre de quatre chiffres")]
     private ?int $codePostal = null;
