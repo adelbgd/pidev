@@ -52,7 +52,8 @@
             </div>
             <div class="row align-items-center justify-content-between" >
                 <div class="col-lg-12">
-                    <div class="best_product_slider owl-carousel"id="comptes-list">
+                    <div style =" display: flex;
+  flex-direction: row-reverse;"id="comptes-list">
                       {% for compte in comptes %}
                       {% if compte.banned == 0 %}
                         <div class="single_product_item">
