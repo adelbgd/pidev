@@ -122,7 +122,7 @@
         </div>
     </header>
     <!-- Header part end-->
- 
+  {% block body %}
 <!--================Home Banner Area =================-->
     <!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">
@@ -146,13 +146,13 @@
     <section class="feature_part padding_top">
         <div class="container">
             
-            {% block body %}
+           
 
-            {% endblock %}
+            
          
         </div>
     </section>
-   
+   {% endblock %}
     <!--::footer_part start::-->
     <footer class="footer_part">
         <div class="container">
