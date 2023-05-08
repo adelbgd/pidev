@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/interfaces/LivraisonInterface.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/models/Livraison.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/Commande_ajouterController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/pi/PI.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/Commande_acceuilController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/Livraison_acceuilController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/Livraison_ajouterController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/AffichelivController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/NewFXMain.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/services/CommandeService.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/models/Commande.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/services/LivraisonService.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/interfaces/CommandeInterface.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/Livraison_modifierrController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/Commande_modifierController.java</file>
-            <file>file:/C:/Users/adelb/OneDrive/Documents/GitHub/pidev/src/view/AffichecordController.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/gui/ListcommandeForm.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/gui/HomeForm.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/services/commandeservices.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/gui/MapForm.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/build.xml</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/myapp/MyApplication.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/gui/addcommandeForm.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/statics/Statics.java</file>
+            <file>file:/C:/Users/adelb/OneDrive/Documents/NetBeansProjects/adel/src/com/mycompany/entities/Commande.java</file>
         </group>
     </open-files>
 </project-private>
