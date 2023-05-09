@@ -41,7 +41,8 @@ Form f = new Form();
 
         Button btnMoveCamera = new Button("Mon Pays");
         btnMoveCamera.addActionListener(e->{
-            cnt.setCameraPosition(new Coord(36.8189700, 10.1657900));
+            cnt.setCameraPosition(new Coord(36.866537, 10.1657900));
+            
         });
         Style s = new Style();
         s.setFgColor(0xff0000);

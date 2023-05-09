@@ -143,14 +143,14 @@ public class addcommandeForm extends Form {
     
         TextField tfnum = new TextField("", "Numéro télephone");
        
-        TextField tffrais = new TextField("", "frais");
+        Label tffrais = new Label("", "frais");
         TextField tfmail = new TextField("", "Email");
        
-        ComboBox<String> villeComboBox = new ComboBox<>("", "Ville");
+        ComboBox<String> villeComboBox = new ComboBox<>();
         villeComboBox.addItem("Chargia");
         villeComboBox.addItem("Ennasr");
         villeComboBox.addItem("Soukra");
-        ComboBox<String> regionComboBox = new ComboBox<>("", "Région");
+        ComboBox<String> regionComboBox = new ComboBox<>();
         regionComboBox.addItem("Ariana");
         regionComboBox.addItem("Béja");
         regionComboBox.addItem("Ben Arous");
@@ -186,8 +186,8 @@ public class addcommandeForm extends Form {
     // Dynamically set the options of the second ComboBox
     if (selectedOption.equals("Ariana")) {
                villeComboBox.getModel().removeItem(0);
-               villeComboBox.getModel().removeItem(0);
-               villeComboBox.getModel().removeItem(0);
+                villeComboBox.getModel().removeItem(0);
+                villeComboBox.getModel().removeItem(0);
                villeComboBox.addItem("Chargia");
                villeComboBox.addItem("Ennasr");
                villeComboBox.addItem("Soukra");
@@ -334,7 +334,7 @@ public class addcommandeForm extends Form {
                 villeComboBox.addItem("Djerba Midoun");
 
             }
-            if (selectedOption.equals("Monastir")) {
+            if (selectedOption.equals("Nabeul")) {
 
                 villeComboBox.getModel().removeItem(0);
                villeComboBox.getModel().removeItem(0);
@@ -403,8 +403,8 @@ public class addcommandeForm extends Form {
             if (selectedOption.equals("Tozeur")) {
 
                 villeComboBox.getModel().removeItem(0);
-               villeComboBox.getModel().removeItem(0);
-               villeComboBox.getModel().removeItem(0); 
+                villeComboBox.getModel().removeItem(0);
+                villeComboBox.getModel().removeItem(0); 
 
                 villeComboBox.addItem("Degache");
                 villeComboBox.addItem("Metlaoui");
@@ -445,8 +445,8 @@ public class addcommandeForm extends Form {
     String num = tfnum.getText().trim();
 
     // validate prenom and nom fields
-    if (prenom.isEmpty() || nom.isEmpty()) {
-        Dialog.show("Alert", "Please enter a valid name", new Command("OK"));
+    if (prenom.isEmpty() ) {
+        Dialog.show("Alert", "Please enter a valid prname", new Command("OK"));
         return;
     }
 
@@ -465,11 +465,16 @@ public class addcommandeForm extends Form {
         Dialog.show("Alert", "Please enter a valid Code postal", new Command("OK"));
         return;
     }
+    // validate rue field
+    if (tfnum.getText().isEmpty()) {
+        Dialog.show("Alert", "Please enter a valid numero", new Command("OK"));
+        return;
+    }
 
    
 
     // validate other fields
-    if ( regionComboBox.getSelectedItem() == null || villeComboBox.getSelectedItem() == null) {
+    if (nom.isEmpty() || nom.isEmpty() ) {
         Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
         return;
     }
