@@ -5,141 +5,42 @@
  */
 package com.mycompany.gui;
 
+import com.codename1.io.NetworkEvent;
+import static com.codename1.push.PushContent.setTitle;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
+import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
+import com.codename1.ui.events.DataChangedListener;
+import com.codename1.ui.events.SelectionListener;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.list.ListModel;
 import com.mycompany.entities.Commande;
 import com.mycompany.services.commandeservices;
 
+/**
+ *
+ * @author adelb
+ */
+public class testForm extends Form {
 
+    Form current;
 
-
-     public class UpdatCommandeForm extends Form{
-         private double calculateShippingCost(String selectedRegion) {
-    double shippingCost = 0.150;
-     double distariana = 29;           
-     double distbeja = 119;
-     double distbenarous = 6.3; 
-     double distbizerte = 84; 
-     double distgabes = 406; 
-     double distgafsa = 336; 
-     double distjendouba = 163; 
-     double distkairouan = 153; 
-     double distkassrine = 290; 
-     double distkebeli = 501; 
-     double distkef = 175; 
-     double distmahdia = 201; 
-     double distmanouba = 21; 
-     double distmednine = 479; 
-     double distmonastire = 161; 
-     double distnabeul = 60; 
-     double distsfax = 261; 
-     double distsidibou = 260; 
-     double distsiliana = 122; 
-     double distsousse = 139; 
-     double disttata = 529; 
-     double disttozer = 428; 
-     double disttunis = 17; 
-     double distzagh = 47;
-    
-     switch (selectedRegion) {
-        case "Ariana":
-            shippingCost = distariana*shippingCost;
-            break;
-        case "Béja":
-            shippingCost = distbeja*shippingCost;
-            break;
-        case "Ben Arous":
-            shippingCost = distbenarous*shippingCost;
-            break;
-        case "Bizerte":
-            shippingCost = distbizerte*shippingCost;
-            break;
-            case "Gabès":
-            shippingCost = distgabes*shippingCost;
-            break;
-            case "Gafsa":
-            shippingCost = distgafsa*shippingCost;
-            break;
-            case "Jendouba":
-            shippingCost = distjendouba*shippingCost;
-            break;
-            case "Kairouan":
-            shippingCost = distkairouan*shippingCost;
-            break;
-            case "Kasserine":
-            shippingCost = distkassrine*shippingCost;
-            break;
-            case "Kébili":
-            shippingCost = distkebeli*shippingCost;
-            break;
-            case "Kef":
-            shippingCost = distkef*shippingCost;
-            break;
-            case "Mahdia":
-            shippingCost = distmahdia*shippingCost;
-            break;
-            case "Manouba":
-            shippingCost = distmanouba*shippingCost;
-            break;
-            case "Médenine":
-            shippingCost = distmednine*shippingCost;
-            break;
-            case "Monastir":
-            shippingCost = distmonastire*shippingCost;
-            break;
-            case "Nabeul":
-            shippingCost = distnabeul*shippingCost;
-            break;
-            case "Sidi Bouzid":
-            shippingCost = distsidibou*shippingCost;
-            break;
-            case "Siliana":
-            shippingCost = distsiliana*shippingCost;
-            break;
-            case "Sousse":
-            shippingCost = distsousse*shippingCost;
-            break;
-            case "Tataouine":
-            shippingCost = disttata*shippingCost;
-            break;
-            case "Tozeur":
-            shippingCost = disttozer*shippingCost;
-            break;
-            case "Tunis":
-            shippingCost = disttunis*shippingCost;
-            break;
-            case "Zaghouan":
-            shippingCost = distzagh*shippingCost;
-            break;
-            
-        default:
-            break;
-    }
-
-    return shippingCost;
-}
-         
-        public UpdatCommandeForm(Form previous){
-        setTitle("Mettre a jour");
+    public testForm() {
+        current = this;
+        setTitle("Home");
         setLayout(BoxLayout.y());
-        TextField tfId= new TextField("", "Id");
-        TextField tfprenom = new TextField("", "Prenom");
-        TextField tfnom = new TextField("", "Nom");
-        TextField tftel = new TextField("", "Numéro télephone");
-        TextField tfmail = new TextField("", "Email");
-       ComboBox<String> villeComboBox = new ComboBox<>("", "Ville");
+        ComboBox<String> villeComboBox = new ComboBox<>();
         villeComboBox.addItem("Chargia");
         villeComboBox.addItem("Ennasr");
         villeComboBox.addItem("Soukra");
-        ComboBox<String> regionComboBox = new ComboBox<>("", "Région");
+        ComboBox<String> regionComboBox = new ComboBox<>();
         regionComboBox.addItem("Ariana");
         regionComboBox.addItem("Béja");
         regionComboBox.addItem("Ben Arous");
@@ -163,6 +64,7 @@ import com.mycompany.services.commandeservices;
         regionComboBox.addItem("Tozeur");
         regionComboBox.addItem("Tunis");
         regionComboBox.addItem("Zaghouan");
+
         regionComboBox.addActionListener(evt -> {
             // Get the selected option from the first ComboBox
             String selectedOption = regionComboBox.getSelectedItem();
@@ -421,42 +323,7 @@ import com.mycompany.services.commandeservices;
 
             }
         });
-        TextField tfrue = new TextField("", "Rue");
-        TextField tfcode = new TextField("", "Code postal");
-        Button Modifierbtn = new Button("Modifier");
-        
-        Modifierbtn.addActionListener((ActionListener) (ActionEvent evt) -> {
-           if ((tfId.getText().length()==0||tfprenom.getText().length()==0||tfnom.getText().length()==0||tftel.getText().length()==0||tfmail.getText().length()==0||regionComboBox.getSelectedItem().length()==0||villeComboBox.getSelectedItem().length()==0||tfrue.getText().length()==0 ||tfcode.getText().length()==0 ))
-               Dialog.show("Alert", "fill all the fields", new Command("OK"));
-           else
-           {
-                      commandeservices sc = new commandeservices();
-                       Commande c = new Commande(Integer.parseInt(tfId.getText()),tfprenom.getText(), tfnom.getText(),Integer.parseInt(tftel.getText()), tfmail.getText(),regionComboBox.getSelectedItem(), villeComboBox.getSelectedItem(), tfrue.getText(),  Integer.parseInt(tfcode.getText()));
 
-                   
-                           boolean test = sc.UpdateCommande(c);
-                    if (!test)       
-                       Dialog.show("ERROR", "SERVER ERROR", new Command("OK"));
-                   
-                   else {
-                       Dialog.show("success", "Commande modifié avec succes", new Command("OK"));
-                   }
-                   
-            }
-               
-               
-              
-                  });
-                    addAll(tfId,tfprenom,tfnom,tftel,tfmail,regionComboBox,villeComboBox,tfrue,tfcode,Modifierbtn);
-                    getToolbar().addMaterialCommandToLeftBar("",FontImage.MATERIAL_ARROW_BACK,e->previous.showBack());
+        addAll(regionComboBox, villeComboBox);
+    }
 }
-        
-        
-        
-        
-}
-   
-    
-
-
-

@@ -15,6 +15,7 @@ import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.io.NetworkEvent;
 import com.mycompany.gui.addcommandeForm;
 import com.mycompany.gui.HomeForm;
+import com.mycompany.gui.testForm;
 import com.mycompany.statics.Statics;
 
 /**
@@ -50,7 +51,9 @@ public class MyApplication {
     }
     
     public void start() {
-      new HomeForm().show();
+     new HomeForm().show();
+           //new testForm().show();
+
     }
 
     public void stop() {
