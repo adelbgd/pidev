@@ -22,6 +22,7 @@ public class AddCompteForm extends SideMenuBaseForm{
         
         setTitle("add compte ");
         setLayout(BoxLayout.y());
+        TextField iduser = new TextField("", "id user");
         TextField nom = new TextField("", "nom");
         TextField profile_image = new TextField("", "profile_image");
         TextField bio = new TextField("", "bio");
@@ -38,7 +39,7 @@ public class AddCompteForm extends SideMenuBaseForm{
            {
                       CompteService sc = new CompteService();
       
-                   Compte c = new Compte(nom.getText(), profile_image.getText(), bio.getText());
+                   Compte c = new Compte(Integer.parseInt(iduser.getText()) , nom.getText(), profile_image.getText(), bio.getText());
                    
                            boolean test = sc.ajoutCompte(c);
                     if (!test)       

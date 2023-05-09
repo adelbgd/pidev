@@ -34,6 +34,8 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import entities.Compte;
+import service.CompteService;
 
 /**
  * Represents a user profile in the app, the first form we open after the walkthru
@@ -45,6 +47,10 @@ public class ProfileForm extends SideMenuBaseForm {
         super(BoxLayout.y());
         Toolbar tb = getToolbar();
         tb.setTitleCentered(false);
+        CompteService sc = new CompteService();
+        Compte c1 = new Compte();
+        Compte c2 = sc.Detailcompte(1, c1) ;
+          System.out.println(c2);
         Image profilePic = res.getImage("user-picture.jpg");
         Image mask = res.getImage("round-mask.png");
         profilePic = profilePic.fill(mask.getWidth(), mask.getHeight());
@@ -55,33 +61,34 @@ public class ProfileForm extends SideMenuBaseForm {
         menuButton.setUIID("Title");
         FontImage.setMaterialIcon(menuButton, FontImage.MATERIAL_MENU);
         menuButton.addActionListener(e -> getToolbar().openSideMenu());
-        
-        Container remainingTasks = BoxLayout.encloseY(
-                        new Label("12", "CenterTitle"),
-                        new Label("remaining tasks", "CenterSubTitle")
-                );
-        remainingTasks.setUIID("RemainingTasks");
-        Container completedTasks = BoxLayout.encloseY(
-                        new Label("32", "CenterTitle"),
-                        new Label("completed tasks", "CenterSubTitle")
-        );
-        completedTasks.setUIID("CompletedTasks");
 
+        Container nbr_followers = BoxLayout.encloseY(
+                new Label("12", "CenterTitle"),
+                new Label("nbr followers", "CenterSubTitle")
+        );
+        nbr_followers.setUIID("nbr followers");
+        Container nbr_followings = BoxLayout.encloseY(
+                new Label("32", "CenterTitle"),
+                new Label("nbr followings", "CenterSubTitle")
+        );
+        nbr_followings.setUIID("nbr followings");
+        Container nbr_produits = BoxLayout.encloseY(
+                new Label("32", "CenterTitle"),
+                new Label("nbr produits", "CenterSubTitle")
+        );
+        nbr_produits.setUIID("nbr produits");
         Container titleCmp = BoxLayout.encloseY(
-                        FlowLayout.encloseIn(menuButton),
-                        BorderLayout.centerAbsolute(
-                                BoxLayout.encloseY(
-                                    new Label("Jennifer Wilson", "Title"),
-                                    new Label("UI/UX Designer", "SubTitle")
-                                )
-                            ).add(BorderLayout.WEST, profilePicLabel),
-                        GridLayout.encloseIn(2, remainingTasks, completedTasks)
-                );
-        
-        FloatingActionButton fab = FloatingActionButton.createFAB(FontImage.MATERIAL_ADD);
-        fab.getAllStyles().setMarginUnit(Style.UNIT_TYPE_PIXELS);
-        fab.getAllStyles().setMargin(BOTTOM, completedTasks.getPreferredH() - fab.getPreferredH() / 2);
-        tb.setTitleComponent(fab.bindFabToContainer(titleCmp, CENTER, BOTTOM));
+                FlowLayout.encloseIn(menuButton),
+                BorderLayout.centerAbsolute(
+                        BoxLayout.encloseY(
+                                new Label("Jennifer Wilson", "Title"),
+                                new Label("UI/UX Designer", "SubTitle")
+                        )
+                ).add(BorderLayout.WEST, profilePicLabel),
+                GridLayout.encloseIn(3, nbr_followers, nbr_followings, nbr_produits)
+        );
+
+        tb.setTitleComponent(titleCmp);
                         
         add(new Label("Today", "TodayTitle"));
         

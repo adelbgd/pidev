@@ -65,8 +65,8 @@ public abstract class SideMenuBaseForm extends Form {
         
         getToolbar().addComponentToSideMenu(sidemenuTop);
         getToolbar().addMaterialCommandToSideMenu(" ajout du compte ", FontImage.MATERIAL_DASHBOARD,  e -> new AddCompteForm(res).show());
-        getToolbar().addMaterialCommandToSideMenu(" Modifier Mon compte ", FontImage.MATERIAL_TRENDING_UP, e ->new ModifierCompteForm(res).show());
-        getToolbar().addMaterialCommandToSideMenu("  Tasks", FontImage.MATERIAL_ACCESS_TIME,  e -> showOtherForm(res));
+        getToolbar().addMaterialCommandToSideMenu("  Mon compte ", FontImage.MATERIAL_TRENDING_UP, e ->new ProfileForm(res).show());
+        getToolbar().addMaterialCommandToSideMenu("  Afficher les comptes", FontImage.MATERIAL_ACCESS_TIME,  e -> new AfficherCompteForm(res).show());
         getToolbar().addMaterialCommandToSideMenu("  Account Settings", FontImage.MATERIAL_SETTINGS,  e -> showOtherForm(res));
         getToolbar().addMaterialCommandToSideMenu("  Logout", FontImage.MATERIAL_EXIT_TO_APP,  e -> new LoginForm(res).show());
     }

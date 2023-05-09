@@ -39,7 +39,7 @@ public class HomeForm extends Form{
         //  btnListClient.addActionListener(e -> new ListClientForm(current).show());
           
           //  Button btnListClient = new Button ("List Client");
-         btnmodifiercompte.addActionListener(e -> new ModifierCompteForm(res).show());
+        // btnmodifiercompte.addActionListener(e -> new ModifierCompteForm(res).show());
         //  btnListClient.addActionListener(e -> new ListClientForm(current).show());
         
           //  Button btnListClient = new Button ("List Client");
@@ -75,7 +75,7 @@ public class HomeForm extends Form{
         
           
           //  Button btnListClient = new Button ("List Client");
-         btnmtaffichercomptes.addActionListener(e -> new FetchComptesForm(current).show());
+         btnmtaffichercomptes.addActionListener(e -> new FetchComptesForm(res).show());
         //  btnListClient.addActionListener(e -> new ListClientForm(current).show());
           addAll(btnaddcompte ,btnmodifiercompte,id , btnmsupprimercompte,btnmaffichercompte,btnmtaffichercomptes );
     }

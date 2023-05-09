@@ -50,7 +50,7 @@ public class CompteService {
      //ajout 
     public boolean ajoutCompte(Compte c) {
         
-        String url =statics.BASE_URL+"/add_compte_json?nom="+c.getNom()+"&profile_image="+c.getProfile_Image()+"&bio="+c.getBio(); // aa sorry n3adi getId lyheya mech ta3 user ta3 reclamation
+        String url =statics.BASE_URL+"/add_compte_json?id="+c.getId()+"&nom="+c.getNom()+"&profile_image="+c.getProfile_Image()+"&bio="+c.getBio(); // aa sorry n3adi getId lyheya mech ta3 user ta3 reclamation
         
         req.setUrl(url);
         req.setPost(false);
@@ -109,6 +109,7 @@ public class CompteService {
                         c.setNbr_Followers((int)nb_followers);
                         c.setNbr_Followings((int)nb_followings);
                         c.setNbr_Produits_Publies((int)nb_pp);
+                        c.setProfile_Image(p_i);
                         c.setBanned((int)banned);
                         c.setBio(bio);
                        
@@ -116,7 +117,7 @@ public class CompteService {
                         //Date 
                       //  String DateConverter =  obj.get("date_de_creation").toString().substring(obj.get("date_de_creation").toString().indexOf("timestamp") + 10 , obj.get("date").toString().lastIndexOf("}"));
                         //System.out.println(DateConverter);
-                        System.out.println(nom);
+                       
                       //  Date currentTime = new Date(Double.valueOf(DateConverter).longValue() * 1000);
                         
                        // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -163,7 +164,7 @@ public class CompteService {
         //Update 
     public boolean modifierCompte(Compte c) {
         
-        String url = statics.BASE_URL +"/updatecompteJSON/"+1+"?nom="+c.getNom()+"&profile_image="+c.getProfile_Image()+"&bio="+c.getBio();
+        String url = statics.BASE_URL +"/updatecompteJSON/"+c.getId()+"?nom="+c.getNom()+"&profile_image="+c.getProfile_Image()+"&bio="+c.getBio();
         req.setUrl(url);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -184,30 +185,38 @@ public class CompteService {
     String url = statics.BASE_URL + "/CompteJSONN/" + id;
     // Create a new request object with the URL
     req.setUrl(url);
-
+         System.out.println(req.getResponseData());
+           
     // Add a response listener to the request
-    req.addResponseListener((evt) -> {
-        // Get the response data as a string
-        String str = new String(req.getResponseData());
-
-        
-            JSONParser jsonp = new JSONParser();
-            try {
+    req.addResponseListener((evt) -> {req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+               
+               JSONParser jsonp = new JSONParser();
                 
-                Map<String,Object>obj = jsonp.parseJSON(new CharArrayReader(new String(str).toCharArray()));
+                try {
+      
                 
+                Map<String,Object>obj = jsonp.parseJSON(new CharArrayReader(new String(req.getResponseData()).toCharArray()));
+                    System.out.println("obj"+obj);
                  c.setNom(obj.get("nom").toString());
                 c.setNbr_Followers(Integer.parseInt(obj.get("nbr_followers").toString()));
                 c.setNbr_Followings(Integer.parseInt(obj.get("nbr_followings").toString()));
                 c.setNbr_Produits_Publies(Integer.parseInt(obj.get("nbr_produits_publies").toString()));
+                c.setProfile_Image(obj.get("profile_image").toString());
                 c.setBio(obj.get("bio").toString());
                 
-            }catch(IOException ex) {
-                System.out.println("error related to sql 🙁 "+ex.getMessage());
+            }catch(Exception ex) {
+                    
+                    ex.printStackTrace();
+                }
+            
             }
-            
-            
-            System.out.println("data === "+str);
+        });
+        
+      ;//execution ta3 request sinon yet3ada chy dima nal9awha
+
+            System.out.println("data === "+req.getResponseData());
             
             
             
